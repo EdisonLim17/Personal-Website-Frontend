@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume - Edison Lim</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="cloud-icon">☁️</span>
+      <span class="name">Edison Lim</span>
+      <a href="https://www.linkedin.com/edisonzhlim/" target="_blank"><img src="assets/linkedinlogo.png" class="icon" alt="LinkedIn"></a>
+      <a href="https://github.com/EdisonLim17" target="_blank"><img src="assets/githublogo.svg" class="icon" alt="GitHub"></a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+    </nav>
+  </header>
+  <main style="display: flex; flex-direction: column; align-items: center;">
+    <h1 style="margin-bottom: 30px;">Resume</h1>
+    <img src="assets/resume.png" alt="Resume Screenshot" style="width: 60%; max-width: 800px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.3);">
+    <a href="assets/edison_resume.pdf" download style="margin-top: 20px; color: #60a5fa; text-decoration: underline;">Download Resume</a>
+  </main>
+  <footer>
+    <p>Connect with me!
+      <a href="https://www.linkedin.com/edisonzhlim/" target="_blank"><img src="assets/linkedinlogo.png" class="icon-footer" alt="LinkedIn"></a>
+      <a href="https://github.com/EdisonLim17" target="_blank"><img src="assets/githublogo.svg" class="icon-footer" alt="GitHub"></a>
+    </p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

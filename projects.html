@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects - Edison Lim</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="cloud-icon">☁️</span>
+      <span class="name">Edison Lim</span>
+      <a href="https://www.linkedin.com/edisonzhlim/" target="_blank"><img src="assets/linkedinlogo.png" class="icon" alt="LinkedIn"></a>
+      <a href="https://github.com/EdisonLim17" target="_blank"><img src="assets/githublogo.svg" class="icon" alt="GitHub"></a>
+    </div>
+
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+    </nav>
+  </header>
+
+  <main style="display: flex; flex-direction: column; align-items: center; padding: 40px;">
+    <h1 style="margin-bottom: 40px;">Projects</h1>
+
+    <div class="project-grid">
+      <div style="background-color: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 20px;">
+        <img src="assets/portfolio-preview.png" style="width: 100%; border-radius: 6px;" alt="Portfolio Website">
+        <h3>Personal Portfolio Website (THIS!!)</h3>
+        <p><em>AWS S3, CloudFront, Lambda, API Gateway, DynamoDB</em></p>
+        <p>Static website hosted on AWS S3 using CloudFront, with a visitor counter stored in DynamoDB, updated by Lambda through the API Gateway.</p>
+      </div>
+
+      <div style="background-color: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 20px;">
+        <img src="assets/split-preview.png" style="width: 100%; border-radius: 6px;" alt="Split App">
+        <h3>Split</h3>
+        <p><em>Java</em></p>
+        <p>Bill splitting app allowing users to split costs with unequally distributed consumers and save debts owed by others that can be updated.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Connect with me!
+      <a href="https://www.linkedin.com/edisonzhlim/" target="_blank"><img src="assets/linkedinlogo.png" class="icon-footer" alt="LinkedIn"></a>
+      <a href="https://github.com/EdisonLim17" target="_blank"><img src="assets/githublogo.svg" class="icon-footer" alt="GitHub"></a>
+    </p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

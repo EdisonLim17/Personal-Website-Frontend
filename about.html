@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me - Edison Lim</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="cloud-icon">☁️</span>
+      <span class="name">Edison Lim</span>
+      <a href="https://www.linkedin.com/edisonzhlim/" target="_blank"><img src="assets/linkedinlogo.png" class="icon" alt="LinkedIn"></a>
+      <a href="https://github.com/EdisonLim17" target="_blank"><img src="assets/githublogo.svg" class="icon" alt="GitHub"></a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+    </nav>
+  </header>
+  <main style="padding: 40px; max-width: 1100px; margin: 0 auto;">
+    <h1 style="margin-bottom: 40px; text-align: left;">About Me</h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 40px;">
+      <div style="flex: 1 1 300px; font-size: 18px; min-width: 280px;">
+        <p>Hello there! My name is Edison Lim. I am currently a third-year student studying Computer Science at the University of Toronto St. George Campus, and I am passionate about developing effective cloud solutions.</p>
+      </div>
+      <div style="flex: 1 1 300px; display: flex; justify-content: center;">
+        <img src="assets/edison.jpg" alt="Edison Lim" style="max-width: 300px; border-radius: 12px;">
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>Connect with me!
+      <a href="https://www.linkedin.com/edisonzhlim/" target="_blank"><img src="assets/linkedinlogo.png" class="icon-footer" alt="LinkedIn"></a>
+      <a href="https://github.com/EdisonLim17" target="_blank"><img src="assets/githublogo.svg" class="icon-footer" alt="GitHub"></a>
+    </p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
