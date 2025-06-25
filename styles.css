@@ -115,6 +115,7 @@ main {
 .project-link {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 .project-card {
@@ -124,17 +125,15 @@ main {
   transition: transform 0.2s ease;
 }
 
-.project-card h3 {
-  margin-top: 16px;
-  margin-bottom: 8px;
-}
-
-.project-card p {
-  margin-bottom: 8px;
-}
-
 .project-card:hover {
   transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
 }
 
 .project-title-row {
@@ -154,6 +153,15 @@ main {
   font-size: 14px;
   color: #9ca3af;
   margin-left: 10px;
+}
+
+.project-card p {
+  margin-bottom: 8px;
+}
+
+.project-card h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
 }
 
 /* Footer */
