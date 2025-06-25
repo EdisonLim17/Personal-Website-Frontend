@@ -106,10 +106,54 @@ main {
 /* Project Grid */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   width: 100%;
   max-width: 1100px;
+}
+
+.project-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.project-card h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.project-card p {
+  margin-bottom: 8px;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+.project-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.project-title-row h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.project-year {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-left: 10px;
 }
 
 /* Footer */
