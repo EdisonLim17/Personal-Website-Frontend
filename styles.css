@@ -159,7 +159,7 @@ main {
 .project-year {
   font-size: 14px;
   color: #9ca3af;
-  margin-top: 21px;
+  margin-top: 20px;
   margin-left: 10px;
 }
 
@@ -170,6 +170,13 @@ main {
 .project-card h3 {
   margin-top: 16px;
   margin-bottom: 8px;
+}
+
+#visitor-counter {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #9ca3af;
+  text-align: center;
 }
 
 /* Footer */
