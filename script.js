@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 async function update_counter(){
     try {
-        const response = await fetch(API_ENDPOINT);
+        const response = await fetch(API_ENDPOINT, {method: "POST"});
         if(!response.ok){
             document.getElementById("visitor-count").textContent = '-';
             throw new Error(`Response status: ${response.status}`)
