@@ -8,6 +8,7 @@ async function update_counter(){
     try {
         const response = await fetch(API_ENDPOINT);
         if(!response.ok){
+            document.getElementById("visitor-count").textContent = '-';
             throw new Error(`Response status: ${response.status}`)
         }
 
@@ -16,7 +17,7 @@ async function update_counter(){
 
         document.getElementById("visitor-count").textContent = num_views || '0';
     } catch (error) {
-        console.error('Failed to fetch visitor count: ', error);
         document.getElementById("visitor-count").textContent = '-';
+        console.error('Failed to fetch visitor count: ', error);
     }
 }
