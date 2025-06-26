@@ -14,9 +14,9 @@ async function update_counter(){
         const json = await response.json();
         num_views = json['num_views']
 
-        document.getElementById("visitor-counter").textContent = num_views || '0';
+        document.getElementById("visitor-count").textContent = num_views || '0';
     } catch (error) {
         console.error('Failed to fetch visitor count: ', error);
-        document.getElementById("visitor-counter").textContent = '-';
+        document.getElementById("visitor-count").textContent = '-';
     }
 }
