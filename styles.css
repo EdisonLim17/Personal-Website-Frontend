@@ -110,13 +110,14 @@ main {
   gap: 40px;
   width: 100%;
   max-width: 1100px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .project-link {
   text-decoration: none;
   color: inherit;
   display: block;
+  height: 100%;
 }
 
 .project-card {
@@ -146,9 +147,8 @@ main {
 .project-title-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 16px;
-  margin-bottom: 8px;
 }
 
 .project-title-row h3 {
@@ -159,11 +159,12 @@ main {
 .project-year {
   font-size: 14px;
   color: #9ca3af;
+  margin-top: 21px;
   margin-left: 10px;
 }
 
 .project-card p {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .project-card h3 {
