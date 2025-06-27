@@ -1,4 +1,4 @@
-const API_ENDPOINT = 'https://l3emasvz8k.execute-api.us-east-1.amazonaws.com/prod/websitecounter'
+const API_ENDPOINT = 'https://5ak2nip9i9.execute-api.us-east-1.amazonaws.com/prod/websitecounterlambdaendpoint'
 
 document.addEventListener("DOMContentLoaded", (event) => {
     update_counter();
