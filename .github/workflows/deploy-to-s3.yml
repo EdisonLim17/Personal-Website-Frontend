@@ -30,13 +30,8 @@ jobs:
         role-to-assume: arn:aws:iam::415730361496:role/OIDC-Role-Role-IIhBuobxdcmm
 
     - name: Sync S3
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: edisonlim.ca
-        AWS_REGION: "us-east-1"
-        SOURCE_DIR: "src"
+      run: |
+        aws s3 sync src s3://edisonlim.ca --delete --follow-symlinks
 
     - name: Invalidate CloudFront Cache
       uses: chetan/invalidate-cloudfront-action@v2
