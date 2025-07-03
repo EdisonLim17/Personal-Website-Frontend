@@ -39,7 +39,8 @@ jobs:
         SOURCE_DIR: "src"
 
     - name: Invalidate CloudFront Cache
-      uses: aws-actions/aws-cloudfront-invalidate-cache@v1
-      with:
-        distribution_id: E38DU81BXX3NE6
-        paths: "/*"
+      uses: chetan/invalidate-cloudfront-action@v2
+      env:
+        DISTRIBUTION: E38DU81BXX3NE6
+        PATHS: "/*"
+        AWS_REGION: "us-east-1"
