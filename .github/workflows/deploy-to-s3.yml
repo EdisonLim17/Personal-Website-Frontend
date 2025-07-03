@@ -1,0 +1,45 @@
+name: "S3 Deploy CI/CD"
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    name: "Deploy S3 Changes"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Configure AWS credentials (Assume Role)
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: us-east-1
+        role-to-assume: arn:aws:iam::415730361496:role/OIDC-Role-Role-IIhBuobxdcmm
+
+    - name: Sync S3
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: edisonlim.ca
+        AWS_REGION: "us-east-1"
+        SOURCE_DIR: "src"
+
+    - name: Invalidate CloudFront Cache
+      uses: aws-actions/aws-cloudfront-invalidate-cache@v1
+      with:
+        distribution_id: E38DU81BXX3NE6
+        paths: "/*"
