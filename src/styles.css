@@ -34,9 +34,12 @@ header {
   color: #60a5fa;
 }
 
-.cloud-icon {
-  font-size: 20px;
-  color: #0077ff;
+.favicon-logo {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 8px;
+  border-radius: 4px;
 }
 
 .name {
