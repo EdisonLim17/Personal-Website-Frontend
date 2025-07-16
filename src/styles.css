@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Fahkwang', sans-serif;
   background: linear-gradient(to bottom, #1a202c, #1e3a8a);
@@ -16,6 +20,8 @@ body {
 
 /* Header */
 header {
+  position: fixed;
+  width: 100%;
   background-color: #111827;
   padding: 10px 30px;
   display: flex;
@@ -23,6 +29,18 @@ header {
   align-items: center;
   flex-wrap: wrap;
 }
+
+#home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+  position: relative;
+}
+
 
 .logo {
   display: flex;

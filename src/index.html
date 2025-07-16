@@ -21,28 +21,136 @@
     </div>
     <button class="hamburger" onclick="toggleMenu()">☰</button>
     <nav id="navbar">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Me</a>
-      <a href="resume.html">Resume</a>
-      <a href="projects.html">Projects</a>
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#resume">Resume</a>
+      <a href="#projects">Projects</a>
     </nav>
   </header>
+
   <main>
-    <div class="center-name">
+    <section id="home" class="center-name">
       <h1>EDISON LIM</h1>
       <div id="visitor-counter">Visitor Count: <span id="visitor-count">—</span></div>
-    </div>
+    </section>
+
+    <section id="about" style="padding: 40px; max-width: 1100px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; gap: 40px;">
+        <div style="display: flex; flex-direction: column; flex: 1 1 300px; font-size: 18px; min-width: 280px; justify-content:center;">
+          <h1 style="margin-bottom: 40px; text-align: left;">About Me</h1>
+          <p>Hello there! I'm Edison Lim, a third-year Computer Science student at the University of Toronto - St. George Campus. I am passionate about designing and building scalable and secure cloud solutions, particularly with AWS. In my free time, I enjoy binging anime and drinking bubble tea!</p>
+        </div>
+        <div style="flex: 1 1 300px; display: flex; justify-content: center;">
+          <img src="assets/professionalprofilepic.jpg" alt="Picture of me" style="max-width: 300px; border-radius: 12px;">
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" style="display: flex; flex-direction: column; align-items: center;">
+      <h1 style="margin-bottom: 30px;">Resume</h1>
+      <img src="assets/resume.jpg" alt="Resume Screenshot" style="width: 60%; max-width: 800px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.3);">
+      <a href="assets/Edison_Lim___Resume.pdf" download style="margin-top: 20px; color: #60a5fa; text-decoration: underline;">Download Resume</a>
+    </section>
+
+    <section id="projects" style="display: flex; flex-direction: column; align-items: center; padding: 40px;">
+      <h1 style="margin-bottom: 40px;">Projects</h1>
+
+      <div class="project-grid">
+        <a href="https://github.com/EdisonLim17/Personal-Website" class="project-link" target="_blank" rel="noopener noreferrer">
+          <div class="project-card">
+            <img src="assets/personalwebsite.png" alt="Portfolio Website">
+            <div class="project-title-row">
+              <h3>Personal Portfolio Website (THIS!!)</h3>
+              <span class="project-year">2025</span>
+            </div>
+            <p><em>AWS S3, CloudFront, Lambda, API Gateway, DynamoDB</em></p>
+            <p>Website hosted on AWS S3 and served through CloudFront, with a visitor counter stored in DynamoDB and updated by Lambda through the API Gateway</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/EdisonLim17/Split" class="project-link" target="_blank" rel="noopener noreferrer">
+          <div class="project-card">
+            <img src="assets/split.png" alt="Split App">
+            <div class="project-title-row">
+              <h3>Split</h3>
+              <span class="project-year">2024</span>
+            </div>
+            <p><em>Java</em></p>
+            <p>Bill splitting app helping users split costs with unequally distributed consumers and save debts owed by others that can be updated</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/EdisonLim17/Sign-Up-Form" class="project-link" target="_blank" rel="noopener noreferrer">
+          <div class="project-card">
+            <img src="assets/renew.png" alt="Sign-Up Form Website">
+            <div class="project-title-row">
+              <h3>Sign-Up Form Website</h3>
+              <span class="project-year">2025</span>
+            </div>
+            <p><em>HTML, CSS, JavaScript</em></p>
+            <p>Responsive sign-up website with client-side validation</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/EdisonLim17/Web-Calculator" class="project-link" target="_blank" rel="noopener noreferrer">
+          <div class="project-card">
+            <img src="assets/calculator.png" alt="Calculator Website">
+            <div class="project-title-row">
+              <h3>Calculator Website</h3>
+              <span class="project-year">2024</span>
+            </div>
+            <p><em>HTML, CSS, JavaScript</em></p>
+            <p>Apple calculator clone</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/EdisonLim17/ICS4U1_FinalProject_TheHorde" class="project-link" target="_blank" rel="noopener noreferrer">
+          <div class="project-card">
+            <img src="assets/thehorde.png" alt="The Horde">
+            <div class="project-title-row">
+              <h3>The Horde</h3>
+              <span class="project-year">2022</span>
+            </div>
+            <p><em>Java</em></p>
+            <p>Top-down zombie shooter with powerups and additional features</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/EdisonLim17/ICS3U1_FinalProject_StarfighterWars" class="project-link" target="_blank" rel="noopener noreferrer">
+          <div class="project-card">
+            <img src="assets/starfighterwars.png" alt="Starfighter Wars">
+            <div class="project-title-row">
+              <h3>Starfighter Wars</h3>
+              <span class="project-year">2022</span>
+            </div>
+            <p><em>Java</em></p>
+            <p>Top down space shooter with smooth motion and mathematically coded graphics</p>
+          </div>
+        </a>
+      </div>
+    </section>
   </main>
+
   <footer>
     <p>Connect with me!
       <a href="https://www.linkedin.com/in/edisonzhlim/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedinlogo.png" class="icon-footer" alt="LinkedIn"></a>
       <a href="https://github.com/EdisonLim17" target="_blank" rel="noopener noreferrer"><img src="assets/githublogo.png" class="icon-footer" alt="GitHub"></a>
     </p>
   </footer>
+
   <script>
     function toggleMenu() {
       document.getElementById("navbar").classList.toggle("active");
     }
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
   </script>
   <script src="script.js"></script>
 </body>
