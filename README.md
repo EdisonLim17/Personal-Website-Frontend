@@ -21,7 +21,7 @@ This repository contains the frontend code for my personal portfolio website, bu
 
 ---
 
-## 🛠️ Technologies Used
+## 🧰 Tech Stack
 
 - **HTML5 / CSS3 / JavaScript**
 - **AWS S3** – static site hosting
@@ -35,5 +35,5 @@ This repository contains the frontend code for my personal portfolio website, bu
 ## 🔧 CI/CD Workflow
 
 Whenever changes are pushed to the `main` branch:
-1. GitHub Actions syncs the `/src` folder to the S3 bucket.
-2. GitHub Actions invalidates CloudFront's cache to serve the updated content globally.
+1. GitHub Actions syncs the `/src` folder to the S3 bucket
+2. GitHub Actions invalidates CloudFront's cache to serve the updated content globally
