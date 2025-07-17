@@ -26,7 +26,7 @@ This repository contains the frontend code for my personal portfolio website, bu
 - **HTML5 / CSS3 / JavaScript**
 - **AWS S3** – static site hosting
 - **AWS CloudFront** – CDN for fast, secure content delivery
-- **AWS Route 53** – custom domain management (edisonlim.ca)
+- **AWS Route 53** – custom domain management
 - **AWS Certificate Manager (ACM)** – SSL certificate provisioning for HTTPS
 - **GitHub Actions** – CI/CD pipeline
 
