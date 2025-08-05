@@ -2,6 +2,8 @@
 
 This repository contains the frontend code for my personal portfolio website, built using **HTML, CSS, and JavaScript** and hosted on **AWS S3** with **CloudFront** for global delivery. The site features sections about me, my resume, and personal projects, with a live visitor counter integrated via the backend, which can be found [here](https://github.com/EdisonLim17/Personal-Website-Backend).
 
+---
+
 ### 🌐 Live Site
 [https://edisonlim.ca](https://edisonlim.ca)
 
