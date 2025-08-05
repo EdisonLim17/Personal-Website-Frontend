@@ -7,7 +7,7 @@ This repository contains the frontend code for my personal portfolio website, bu
 
 ---
 
-## Architecture
+## ☁️ Architecture
 ![Image of architecture](/src/assets/Personal-Website-Frontend-AWS-Architecture.jpeg)
 
 ---
@@ -32,7 +32,7 @@ This repository contains the frontend code for my personal portfolio website, bu
 
 ---
 
-## 🔧 CI/CD Workflow
+## 🔄 CI/CD Workflow
 
 Whenever changes are pushed to the `main` branch:
 1. GitHub Actions syncs the `/src` folder to the S3 bucket
