@@ -1,169 +1,195 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edison Lim - Portfolio</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edison Lim — Portfolio</title>
+  <meta name="description" content="Edison Lim — Computer Science @ UofT. Projects in AWS, web, and Java. View resume and featured work." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png">
   <link rel="manifest" href="/assets/favicon_io/site.webmanifest">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
+  <!-- Decorative Background -->
+  <div class="background-blobs" aria-hidden="true">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <div class="blob blob4"></div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header class="site-header" id="top">
     <div class="logo">
-      <img src="/assets/favicon_io/favicon-32x32.png" alt="favicon" class="favicon-logo">
+      <img src="/assets/favicon_io/favicon-32x32.png" alt="Edison Lim logo" class="favicon-logo" width="25" height="25" />
       <span class="name">Edison Lim</span>
-      <a href="https://www.linkedin.com/in/edisonzhlim/" target="_blank" rel="noopener noreferrer"><img src="/assets/linkedinlogo.png" class="icon" alt="LinkedIn"></a>
-      <a href="https://github.com/EdisonLim17" target="_blank" rel="noopener noreferrer"><img src="/assets/githublogo.png" class="icon" alt="GitHub"></a>
+      <a class="icon-link" href="https://www.linkedin.com/in/edisonzhlim/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <img src="/assets/linkedinlogo.png" class="icon" alt="LinkedIn" width="20" height="20" loading="lazy" />
+      </a>
+      <a class="icon-link" href="https://github.com/EdisonLim17" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <img src="/assets/githublogo.png" class="icon" alt="GitHub" width="20" height="20" loading="lazy" />
+      </a>
     </div>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-    <nav id="navbar">
-      <a href="#home">Home</a>
-      <a href="#about">About Me</a>
-      <a href="#resume">Resume</a>
-      <a href="#projects">Projects</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-controls="navbar" aria-expanded="false">☰</button>
+
+    <nav id="navbar" class="nav-links" role="navigation">
+      <a class="nav-link" href="#home">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#resume">Resume</a>
+      <a class="nav-link" href="#projects">Projects</a>
     </nav>
   </header>
 
-  <main>
-    <section id="home" class="center-name">
-      <h1>EDISON LIM</h1>
-      <div id="visitor-counter">Visitor Count: <span id="visitor-count">—</span></div>
+  <main id="content">
+    <!-- Home -->
+    <section id="home" class="section home">
+      <h1 class="hero-name">EDISON LIM</h1>
+      <p id="visitor-counter" class="visitor">Visitor Count: <span id="visitor-count" aria-live="polite">—</span></p>
+      <a class="cta" href="#projects">See my work</a>
     </section>
 
-    <section id="about" style="padding: 40px; max-width: 1100px; margin: 0 auto;">
-      <div style="display: flex; flex-wrap: wrap; gap: 40px;">
-        <div style="display: flex; flex-direction: column; flex: 1 1 300px; font-size: 18px; min-width: 280px; justify-content:center;">
-          <h1>About Me</h1>
-          <p>Hello there! I'm Edison Lim, a third-year Computer Science student at the University of Toronto - St. George Campus. I am passionate about designing and building scalable and secure cloud solutions, particularly with AWS. In my free time, I enjoy binging anime and drinking bubble tea!</p>
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p>Hello there! I'm Edison Lim, a third-year Computer Science student at the University of Toronto – St. George Campus. I love designing and building scalable, secure cloud solutions, particularly with AWS. In my free time, I binge anime and drink bubble tea.</p>
         </div>
-        <div style="flex: 1 1 300px; display: flex; justify-content: center;">
-          <img src="/assets/professionalprofilepic.jpg" alt="Picture of me" style="max-width: 300px; border-radius: 12px;">
+        <div class="about-media">
+          <img src="/assets/professionalprofilepic.jpg" alt="Portrait of Edison Lim" class="about-photo" width="300" height="300" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <section id="resume" style="display: flex; flex-direction: column; align-items: center;">
-      <h1>Resume</h1>
-      <img src="/assets/resume.jpg" alt="Resume Screenshot" style="width: 60%; max-width: 800px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.3);">
-      <a href="/assets/Edison_Lim___Resume.pdf" download style="margin-top: 20px; color: #60a5fa; text-decoration: underline;">Download Resume</a>
+    <!-- Resume -->
+    <section id="resume" class="section resume">
+      <h2>Resume</h2>
+      <figure class="resume-figure">
+        <img src="/assets/resume.jpg" alt="Screenshot of Edison Lim's resume" class="resume-image" loading="lazy" />
+        <figcaption>
+          <a class="button" href="/assets/Edison_Lim___Resume.pdf" download>Download PDF</a>
+        </figcaption>
+      </figure>
     </section>
 
-    <section id="projects" style="display: flex; flex-direction: column; align-items: center; padding: 40px;">
-      <h1>Projects</h1>
-
-      <div class="project-grid">
+    <!-- Projects -->
+    <section id="projects" class="section projects">
+      <h2>Projects</h2>
+      <div class="project-grid" id="projectGrid">
+        <!-- 1 -->
         <a href="https://github.com/EdisonLim17/iam-policy-generator" class="project-link" target="_blank" rel="noopener noreferrer">
-          <div class="project-card">
-            <img src="/assets/iam-policy-generator.png" alt="IAM Policy Generator">
+          <article class="project-card">
+            <img src="/assets/iam-policy-generator.png" alt="Screenshot of IAM Policy Generator app" loading="lazy" />
             <div class="project-title-row">
               <h3>IAM Policy Generator</h3>
-              <span class="project-year">2025</span>  
+              <span class="project-year">2025</span>
             </div>
             <p><em>AWS Amplify, EC2, ASG, RDS, VPC, Terraform, FastAPI</em></p>
-            <p>Web application that creates custom AWS IAM policies from natural language using OpenAI, with secure and scalable infrastructure deployed via Terraform</p>
-          </div>
+            <p>Creates custom AWS IAM policies from natural language using OpenAI; infra deployed with Terraform.</p>
+          </article>
         </a>
-
+        <!-- 2 -->
         <a href="https://github.com/EdisonLim17/Personal-Website" class="project-link" target="_blank" rel="noopener noreferrer">
-          <div class="project-card">
-            <img src="/assets/personalwebsite.png" alt="Portfolio Website">
+          <article class="project-card">
+            <img src="/assets/personalwebsite.png" alt="Screenshot of this portfolio website" loading="lazy" />
             <div class="project-title-row">
               <h3>Personal Portfolio Website (THIS!!)</h3>
               <span class="project-year">2025</span>
             </div>
             <p><em>AWS S3, CloudFront, Lambda, API Gateway, DynamoDB</em></p>
-            <p>Website hosted on AWS S3 and served through CloudFront, with a visitor counter stored in DynamoDB and updated by Lambda through the API Gateway</p>
-          </div>
+            <p>Static site on S3 + CloudFront with a Lambda/DynamoDB visitor counter via API Gateway.</p>
+          </article>
         </a>
-
+        <!-- 3 -->
         <a href="https://github.com/EdisonLim17/Split" class="project-link" target="_blank" rel="noopener noreferrer">
-          <div class="project-card">
-            <img src="/assets/split.png" alt="Split App">
+          <article class="project-card">
+            <img src="/assets/split.png" alt="Screenshot of Split bill-splitting app" loading="lazy" />
             <div class="project-title-row">
               <h3>Split</h3>
               <span class="project-year">2024</span>
             </div>
             <p><em>Java</em></p>
-            <p>Bill splitting app helping users split costs with unequally distributed consumers and save debts owed by others that can be updated</p>
-          </div>
+            <p>Bill splitting app with support for unequal shares and persistent debts.</p>
+          </article>
         </a>
-
+        <!-- 4 -->
         <a href="https://github.com/EdisonLim17/Sign-Up-Form" class="project-link" target="_blank" rel="noopener noreferrer">
-          <div class="project-card">
-            <img src="/assets/renew.png" alt="Sign-Up Form Website">
+          <article class="project-card">
+            <img src="/assets/renew.png" alt="Screenshot of responsive sign-up form" loading="lazy" />
             <div class="project-title-row">
               <h3>Sign-Up Form Website</h3>
               <span class="project-year">2025</span>
             </div>
             <p><em>HTML, CSS, JavaScript</em></p>
-            <p>Responsive sign-up website with client-side validation</p>
-          </div>
+            <p>Responsive sign-up website with client-side validation.</p>
+          </article>
         </a>
-
+        <!-- 5 -->
         <a href="https://github.com/EdisonLim17/Web-Calculator" class="project-link" target="_blank" rel="noopener noreferrer">
-          <div class="project-card">
-            <img src="/assets/calculator.png" alt="Calculator Website">
+          <article class="project-card">
+            <img src="/assets/calculator.png" alt="Screenshot of calculator website" loading="lazy" />
             <div class="project-title-row">
               <h3>Calculator Website</h3>
               <span class="project-year">2024</span>
             </div>
             <p><em>HTML, CSS, JavaScript</em></p>
-            <p>Apple calculator clone</p>
-          </div>
+            <p>Clean Apple-style calculator clone.</p>
+          </article>
         </a>
-
+        <!-- 6 -->
         <a href="https://github.com/EdisonLim17/ICS4U1_FinalProject_TheHorde" class="project-link" target="_blank" rel="noopener noreferrer">
-          <div class="project-card">
-            <img src="/assets/thehorde.png" alt="The Horde">
+          <article class="project-card">
+            <img src="/assets/thehorde.png" alt="Screenshot of The Horde game" loading="lazy" />
             <div class="project-title-row">
               <h3>The Horde</h3>
               <span class="project-year">2022</span>
             </div>
             <p><em>Java</em></p>
-            <p>Top-down zombie shooter with powerups and additional features</p>
-          </div>
+            <p>Top-down zombie shooter with power-ups.</p>
+          </article>
         </a>
-
+        <!-- 7 -->
         <a href="https://github.com/EdisonLim17/ICS3U1_FinalProject_StarfighterWars" class="project-link" target="_blank" rel="noopener noreferrer">
-          <div class="project-card">
-            <img src="/assets/starfighterwars.png" alt="Starfighter Wars">
+          <article class="project-card">
+            <img src="/assets/starfighterwars.png" alt="Screenshot of Starfighter Wars game" loading="lazy" />
             <div class="project-title-row">
               <h3>Starfighter Wars</h3>
               <span class="project-year">2022</span>
             </div>
             <p><em>Java</em></p>
-            <p>Top down space shooter with smooth motion and mathematically coded graphics</p>
-          </div>
+            <p>Top-down space shooter with smooth motion and coded graphics.</p>
+          </article>
         </a>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <p>Connect with me!
-      <a href="https://www.linkedin.com/in/edisonzhlim/" target="_blank" rel="noopener noreferrer"><img src="/assets/linkedinlogo.png" class="icon-footer" alt="LinkedIn"></a>
-      <a href="https://github.com/EdisonLim17" target="_blank" rel="noopener noreferrer"><img src="/assets/githublogo.png" class="icon-footer" alt="GitHub"></a>
+      <a href="https://www.linkedin.com/in/edisonzhlim/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <img src="/assets/linkedinlogo.png" class="icon-footer" alt="LinkedIn" width="18" height="18" loading="lazy" />
+      </a>
+      <a href="https://github.com/EdisonLim17" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <img src="/assets/githublogo.png" class="icon-footer" alt="GitHub" width="18" height="18" loading="lazy" />
+      </a>
     </p>
   </footer>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("navbar").classList.toggle("active");
-    }
-    
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script>
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
