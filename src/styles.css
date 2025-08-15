@@ -37,7 +37,7 @@ img {
   display: block;
 }
 
-/* ===== Background Blobs ===== */
+/* ===== Enhanced Background Blobs ===== */
 .background-blobs {
   position: fixed;
   inset: 0;
@@ -48,51 +48,88 @@ img {
 
 .blob {
   position: absolute;
-  width: 520px;
-  height: 520px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  filter: blur(60px); /* Reduced from 72px */
-  opacity: 0.28; /* Reduced from 0.38 */
+  filter: blur(80px);
+  opacity: 0.45;
   will-change: transform;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .blob1 {
-  background: radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, transparent 70%);
-  top: -140px;
-  left: -140px;
-  animation: blobMove 24s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.7) 0%, rgba(96, 165, 250, 0.3) 40%, transparent 80%);
+  top: -160px;
+  left: -160px;
+  animation: blobMove1 28s ease-in-out infinite alternate;
 }
 
 .blob2 {
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.45) 0%, transparent 70%);
-  bottom: -160px;
-  right: -160px;
-  animation: blobMove 26s 5s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.6) 0%, rgba(236, 72, 153, 0.25) 40%, transparent 80%);
+  bottom: -180px;
+  right: -180px;
+  animation: blobMove2 32s 5s ease-in-out infinite alternate;
 }
 
 .blob3 {
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.38) 0%, transparent 70%);
-  top: 50%;
-  left: -220px;
-  animation: blobMove 28s 10s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.55) 0%, rgba(34, 197, 94, 0.2) 40%, transparent 80%);
+  top: 40%;
+  left: -250px;
+  animation: blobMove3 36s 10s ease-in-out infinite alternate;
 }
 
 .blob4 {
-  background: radial-gradient(circle, rgba(250, 204, 21, 0.38) 0%, transparent 70%);
-  bottom: 22%;
-  right: -220px;
-  animation: blobMove 30s 15s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.55) 0%, rgba(250, 204, 21, 0.2) 40%, transparent 80%);
+  bottom: 30%;
+  right: -250px;
+  animation: blobMove4 40s 15s ease-in-out infinite alternate;
 }
 
-@keyframes blobMove {
+@keyframes blobMove1 {
   0% {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
   }
   50% {
-    transform: translate3d(80px, -40px, 0) scale(1.1); /* Reduced movement */
+    transform: translate3d(120px, -60px, 0) scale(1.2) rotate(180deg);
   }
   100% {
-    transform: translate3d(-40px, 30px, 0) scale(1);
+    transform: translate3d(-60px, 40px, 0) scale(0.9) rotate(360deg);
+  }
+}
+
+@keyframes blobMove2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-100px, 80px, 0) scale(1.15) rotate(-120deg);
+  }
+  100% {
+    transform: translate3d(80px, -50px, 0) scale(0.95) rotate(-240deg);
+  }
+}
+
+@keyframes blobMove3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(90px, 70px, 0) scale(1.1) rotate(90deg);
+  }
+  100% {
+    transform: translate3d(-70px, -60px, 0) scale(1.05) rotate(180deg);
+  }
+}
+
+@keyframes blobMove4 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-110px, -40px, 0) scale(1.25) rotate(-90deg);
+  }
+  100% {
+    transform: translate3d(60px, 90px, 0) scale(0.85) rotate(-180deg);
   }
 }
 
@@ -375,7 +412,7 @@ img {
   z-index: 2;
 }
 
-/* ===== Enhanced Project Cards with Modern Hover Effects ===== */
+/* ===== Simplified Project Cards ===== */
 .projects .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -404,15 +441,13 @@ img {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  
-  /* Simplified transition - only transform and box-shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  
-  /* Use transform3d for hardware acceleration */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.3s ease;
   transform: translate3d(0, 0, 0);
 }
 
-/* Simplified border gradient - only show on hover */
+/* Static blue/pink gradient border */
 .project-card::before {
   content: '';
   position: absolute;
@@ -420,8 +455,8 @@ img {
   padding: 1px;
   background: linear-gradient(45deg, 
     transparent, 
-    rgba(96, 165, 250, 0.2),
-    rgba(236, 72, 153, 0.2),
+    rgba(96, 165, 250, 0.4),
+    rgba(236, 72, 153, 0.4),
     transparent
   );
   border-radius: inherit;
@@ -430,36 +465,39 @@ img {
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   opacity: 0;
-  transition: opacity 0.2s ease; /* Faster transition */
+  transition: opacity 0.3s ease;
 }
 
-/* Optimized glow effect */
+/* Mouse-following blob effect */
 .project-card::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 0;
   height: 0;
   background: radial-gradient(circle, 
-    rgba(96, 165, 250, 0.1) 0%, 
-    rgba(236, 72, 153, 0.08) 50%, 
+    rgba(96, 165, 250, 0.25) 0%, 
+    rgba(236, 72, 153, 0.15) 30%,
     transparent 70%
   );
   border-radius: 50%;
-  transform: var(--blob-transform, translate3d(-50%, -50%, 0));
-  transition: width 0.2s ease, height 0.2s ease; /* Only animate size */
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
+  opacity: 0;
+  top: var(--mouse-y, 50%);
+  left: var(--mouse-x, 50%);
 }
 
-/* Simplified hover state */
+/* Simple hover state - just pop up */
 .project-card:hover {
-  transform: translate3d(0, -8px, 0) scale(1.02); /* Reduced movement */
+  transform: translate3d(0, -12px, 0);
   box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.4), /* Reduced complexity */
-    0 0 25px rgba(96, 165, 250, 0.15);
-  border-color: rgba(96, 165, 250, 0.3);
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(96, 165, 250, 0.2);
+  border-color: rgba(96, 165, 250, 0.4);
 }
 
 /* Activate border gradient on hover */
@@ -467,44 +505,43 @@ img {
   opacity: 1;
 }
 
-/* Expand glow effect on hover */
+/* Expand mouse-following blob on hover */
 .project-card:hover::after {
-  width: 100%; /* Reduced from 120% */
-  height: 100%;
+  width: 300px;
+  height: 300px;
+  opacity: 1;
 }
 
-/* Optimized image hover effects */
 .project-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Simplified */
-  transform: translate3d(0, 0, 0); /* Hardware acceleration */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s ease;
+  transform: translate3d(0, 0, 0);
+  z-index: 2;
+  position: relative;
 }
 
 .project-card:hover img {
-  transform: translate3d(0, 0, 0) scale(1.05); /* Reduced scale */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Simplified shadow */
+  transform: translate3d(0, 0, 0) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
-/* Animated title effect */
 .project-title-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
   position: relative;
+  z-index: 2;
 }
 
 .project-title-row h3 {
   font-size: 20px;
-  transition: all 0.3s ease;
-  background: linear-gradient(90deg, var(--fg), var(--fg));
-  background-size: 100% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  transition: color 0.3s ease;
+  color: var(--fg);
 }
 
 .project-card:hover .project-title-row h3 {
@@ -513,66 +550,54 @@ img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transform: translateX(4px);
 }
 
-/* Animated year badge */
 .project-year {
   font-size: 14px;
   color: var(--muted);
   margin-top: 6px;
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(4px);
 }
 
 .project-card:hover .project-year {
-  background: linear-gradient(45deg, rgba(96, 165, 250, 0.2), rgba(236, 72, 153, 0.2));
-  border-color: rgba(96, 165, 250, 0.3);
+  background: linear-gradient(45deg, rgba(96, 165, 250, 0.3), rgba(236, 72, 153, 0.3));
+  border-color: rgba(96, 165, 250, 0.5);
   color: #60a5fa;
   transform: scale(1.05);
 }
 
-/* Content slide-up animation */
 .project-card p {
   margin-bottom: 6px;
-  transition: all 0.3s ease;
-  transform: translateY(0);
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .project-card:hover p {
-  transform: translateY(-2px);
+  color: rgba(229, 231, 235, 0.95);
 }
 
-/* Tech stack emphasis */
 .project-card p em {
   background: linear-gradient(45deg, rgba(96, 165, 250, 0.1), rgba(236, 72, 153, 0.1));
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
   font-style: normal;
   font-weight: 600;
   font-size: 0.9em;
   border: 1px solid rgba(96, 165, 250, 0.2);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover p em {
-  background: linear-gradient(45deg, rgba(96, 165, 250, 0.2), rgba(236, 72, 153, 0.2));
-  border-color: rgba(96, 165, 250, 0.4);
+  background: linear-gradient(45deg, rgba(96, 165, 250, 0.25), rgba(236, 72, 153, 0.25));
+  border-color: rgba(96, 165, 250, 0.5);
   color: #60a5fa;
 }
-
-/* Staggered animation delay for grid items */
-.project-card:nth-child(1) { transition-delay: 0ms; }
-.project-card:nth-child(2) { transition-delay: 50ms; }
-.project-card:nth-child(3) { transition-delay: 100ms; }
-.project-card:nth-child(4) { transition-delay: 150ms; }
-.project-card:nth-child(5) { transition-delay: 200ms; }
-.project-card:nth-child(6) { transition-delay: 250ms; }
-.project-card:nth-child(7) { transition-delay: 300ms; }
 
 /* ===== Footer ===== */
 .site-footer {
@@ -670,39 +695,43 @@ img {
     justify-content: center;
   }
 
-  /* Remove heavy filters and effects on mobile */
+  /* Reduce blob effects on mobile for performance */
   .blob {
-    filter: blur(40px); /* Further reduced on mobile */
-    opacity: 0.2;
+    filter: blur(60px);
+    opacity: 0.3;
+    width: 400px;
+    height: 400px;
   }
   
   .project-card:hover {
-    transform: translate3d(0, -4px, 0); /* Minimal movement on mobile */
+    transform: translate3d(0, -6px, 0);
   }
   
   .project-card:hover img {
-    transform: translate3d(0, 0, 0) scale(1.02);
+    transform: translate3d(0, 0, 0) scale(1.03);
   }
   
-  /* Disable mouse following on mobile */
+  /* Simplify card effects on mobile */
   .project-card::after {
-    transform: translate3d(-50%, -50%, 0) !important;
+    display: none;
   }
 }
 
 /* Performance mode for slower devices */
 @media (max-width: 480px) {
   .blob {
-    display: none; /* Hide blobs entirely on very small screens */
+    opacity: 0.2;
+    width: 300px;
+    height: 300px;
+    filter: blur(40px);
   }
   
   .project-card {
-    transition: transform 0.2s ease; /* Minimal transitions */
+    transition: transform 0.2s ease;
   }
   
-  .project-card::before,
-  .project-card::after {
-    display: none; /* Remove heavy effects */
+  .project-card::before {
+    display: none;
   }
 }
 
@@ -712,5 +741,9 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  .blob {
+    animation: none !important;
   }
 }
