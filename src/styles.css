@@ -375,7 +375,7 @@ img {
   z-index: 2;
 }
 
-/* ===== Projects Section ===== */
+/* ===== Enhanced Project Cards with Modern Hover Effects ===== */
 .projects .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -401,140 +401,179 @@ img {
   flex-direction: column;
   gap: 12px;
   height: 100%;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  
+  /* Base transition */
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  
+  /* Enhanced backdrop filter effect */
+  backdrop-filter: blur(8px);
 }
 
+/* Animated border gradient effect */
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(45deg, 
+    transparent, 
+    rgba(96, 165, 250, 0.3),
+    rgba(236, 72, 153, 0.3),
+    transparent
+  );
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Hover glow effect */
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, 
+    rgba(96, 165, 250, 0.15) 0%, 
+    rgba(236, 72, 153, 0.1) 50%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Main hover state */
 .project-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(96, 165, 250, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(96, 165, 250, 0.4);
 }
 
+/* Activate border gradient on hover */
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* Expand glow effect on hover */
+.project-card:hover::after {
+  width: 120%;
+  height: 120%;
+}
+
+/* Enhanced image hover effects */
 .project-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
-  transition: box-shadow 0.25s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .project-card:hover img {
-  box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+  transform: scale(1.08);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(96, 165, 250, 0.3);
+  filter: brightness(1.1) saturate(1.2);
 }
 
+/* Animated title effect */
 .project-title-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
+  position: relative;
 }
 
 .project-title-row h3 {
   font-size: 20px;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, var(--fg), var(--fg));
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+.project-card:hover .project-title-row h3 {
+  background: linear-gradient(90deg, #60a5fa, #ec4899);
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translateX(4px);
+}
+
+/* Animated year badge */
 .project-year {
   font-size: 14px;
   color: var(--muted);
   margin-top: 6px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
 }
 
+.project-card:hover .project-year {
+  background: linear-gradient(45deg, rgba(96, 165, 250, 0.2), rgba(236, 72, 153, 0.2));
+  border-color: rgba(96, 165, 250, 0.3);
+  color: #60a5fa;
+  transform: scale(1.05);
+}
+
+/* Content slide-up animation */
 .project-card p {
   margin-bottom: 6px;
+  transition: all 0.3s ease;
+  transform: translateY(0);
 }
 
-/* ===== Footer ===== */
-.site-footer {
-  margin-top: auto;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
-  color: var(--brand1);
-  text-align: center;
-  padding: 16px;
-  font-size: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+.project-card:hover p {
+  transform: translateY(-2px);
 }
 
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+/* Tech stack emphasis */
+.project-card p em {
+  background: linear-gradient(45deg, rgba(96, 165, 250, 0.1), rgba(236, 72, 153, 0.1));
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9em;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  transition: all 0.3s ease;
 }
 
-.footer-links {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.project-card:hover p em {
+  background: linear-gradient(45deg, rgba(96, 165, 250, 0.2), rgba(236, 72, 153, 0.2));
+  border-color: rgba(96, 165, 250, 0.4);
+  color: #60a5fa;
 }
 
-.icon-footer {
-  inline-size: 18px;
-  block-size: 18px;
-  transition: transform 0.2s ease;
-}
-
-.icon-footer:hover {
-  transform: scale(1.1);
-}
-
-/* ===== Responsive Design ===== */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: var(--header-h);
-    right: 12px;
-    left: 12px;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding: 12px 16px;
-    background: rgba(0, 0, 0, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .section {
-    padding: 72px 18px;
-  }
-
-  .section h2 {
-    font-size: 32px;
-  }
-
-  .web-name {
-    font-size: 42px;
-    padding: 20px;
-    border-radius: 22px;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .projects .project-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    gap: 8px;
-  }
-}
-
-/* ===== Reduced Motion ===== */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* Staggered animation delay for grid items */
+.project-card:nth-child(1) { transition-delay: 0ms; }
+.project-card:nth-child(2) { transition-delay: 50ms; }
+.project-card:nth-child(3) { transition-delay: 100ms; }
+.project-card:nth-child(4) { transition-delay: 150ms; }
+.project-card:nth-child(5) { transition-delay: 200ms; }
+.project-card:nth-child(6) { transition-delay: 250ms; }
