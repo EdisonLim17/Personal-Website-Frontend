@@ -51,8 +51,8 @@ img {
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  filter: blur(72px);
-  opacity: 0.38;
+  filter: blur(60px); /* Reduced from 72px */
+  opacity: 0.28; /* Reduced from 0.38 */
   will-change: transform;
 }
 
@@ -89,10 +89,10 @@ img {
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(120px, -60px, 0) scale(1.15);
+    transform: translate3d(80px, -40px, 0) scale(1.1); /* Reduced movement */
   }
   100% {
-    transform: translate3d(-60px, 50px, 0) scale(1);
+    transform: translate3d(-40px, 30px, 0) scale(1);
   }
 }
 
@@ -405,14 +405,14 @@ img {
   overflow: hidden;
   cursor: pointer;
   
-  /* Base transition */
-  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  /* Simplified transition - only transform and box-shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   
-  /* Enhanced backdrop filter effect */
-  backdrop-filter: blur(8px);
+  /* Use transform3d for hardware acceleration */
+  transform: translate3d(0, 0, 0);
 }
 
-/* Animated border gradient effect */
+/* Simplified border gradient - only show on hover */
 .project-card::before {
   content: '';
   position: absolute;
@@ -420,8 +420,8 @@ img {
   padding: 1px;
   background: linear-gradient(45deg, 
     transparent, 
-    rgba(96, 165, 250, 0.3),
-    rgba(236, 72, 153, 0.3),
+    rgba(96, 165, 250, 0.2),
+    rgba(236, 72, 153, 0.2),
     transparent
   );
   border-radius: inherit;
@@ -430,10 +430,10 @@ img {
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.2s ease; /* Faster transition */
 }
 
-/* Hover glow effect */
+/* Optimized glow effect */
 .project-card::after {
   content: '';
   position: absolute;
@@ -442,25 +442,24 @@ img {
   width: 0;
   height: 0;
   background: radial-gradient(circle, 
-    rgba(96, 165, 250, 0.15) 0%, 
-    rgba(236, 72, 153, 0.1) 50%, 
+    rgba(96, 165, 250, 0.1) 0%, 
+    rgba(236, 72, 153, 0.08) 50%, 
     transparent 70%
   );
   border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform: var(--blob-transform, translate3d(-50%, -50%, 0));
+  transition: width 0.2s ease, height 0.2s ease; /* Only animate size */
   pointer-events: none;
   z-index: -1;
 }
 
-/* Main hover state */
+/* Simplified hover state */
 .project-card:hover {
-  transform: translateY(-12px) scale(1.03);
+  transform: translate3d(0, -8px, 0) scale(1.02); /* Reduced movement */
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(96, 165, 250, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(96, 165, 250, 0.4);
+    0 15px 35px rgba(0, 0, 0, 0.4), /* Reduced complexity */
+    0 0 25px rgba(96, 165, 250, 0.15);
+  border-color: rgba(96, 165, 250, 0.3);
 }
 
 /* Activate border gradient on hover */
@@ -470,27 +469,23 @@ img {
 
 /* Expand glow effect on hover */
 .project-card:hover::after {
-  width: 120%;
-  height: 120%;
+  width: 100%; /* Reduced from 120% */
+  height: 100%;
 }
 
-/* Enhanced image hover effects */
+/* Optimized image hover effects */
 .project-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
-  transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Simplified */
+  transform: translate3d(0, 0, 0); /* Hardware acceleration */
 }
 
 .project-card:hover img {
-  transform: scale(1.08);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.4),
-    0 0 25px rgba(96, 165, 250, 0.3);
-  filter: brightness(1.1) saturate(1.2);
+  transform: translate3d(0, 0, 0) scale(1.05); /* Reduced scale */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Simplified shadow */
 }
 
 /* Animated title effect */
@@ -577,3 +572,145 @@ img {
 .project-card:nth-child(4) { transition-delay: 150ms; }
 .project-card:nth-child(5) { transition-delay: 200ms; }
 .project-card:nth-child(6) { transition-delay: 250ms; }
+.project-card:nth-child(7) { transition-delay: 300ms; }
+
+/* ===== Footer ===== */
+.site-footer {
+  margin-top: auto;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  color: var(--brand1);
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.footer-content p {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.icon-footer {
+  inline-size: 18px;
+  block-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.icon-footer:hover {
+  transform: scale(1.1);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: var(--header-h);
+    right: 12px;
+    left: 12px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .section {
+    padding: 72px 18px;
+  }
+
+  .section h2 {
+    font-size: 32px;
+  }
+
+  .web-name {
+    font-size: 42px;
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .projects .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Remove heavy filters and effects on mobile */
+  .blob {
+    filter: blur(40px); /* Further reduced on mobile */
+    opacity: 0.2;
+  }
+  
+  .project-card:hover {
+    transform: translate3d(0, -4px, 0); /* Minimal movement on mobile */
+  }
+  
+  .project-card:hover img {
+    transform: translate3d(0, 0, 0) scale(1.02);
+  }
+  
+  /* Disable mouse following on mobile */
+  .project-card::after {
+    transform: translate3d(-50%, -50%, 0) !important;
+  }
+}
+
+/* Performance mode for slower devices */
+@media (max-width: 480px) {
+  .blob {
+    display: none; /* Hide blobs entirely on very small screens */
+  }
+  
+  .project-card {
+    transition: transform 0.2s ease; /* Minimal transitions */
+  }
+  
+  .project-card::before,
+  .project-card::after {
+    display: none; /* Remove heavy effects */
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
