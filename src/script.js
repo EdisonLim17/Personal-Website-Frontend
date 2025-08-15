@@ -109,108 +109,6 @@ function revealProjects(){
   cards.forEach(c => io.observe(c));
 }
 
-// ===== Background Blob Mouse Attraction =====
-function setupBlobMouseAttraction() {
-  if (prefersReducedMotion || window.innerWidth <= 768) {
-    return; // Skip on mobile or reduced motion
-  }
-
-  const blobs = $$('.blob');
-  if (blobs.length === 0) return;
-
-  // Store original positions for each blob
-  const originalPositions = blobs.map(blob => {
-    const computedStyle = window.getComputedStyle(blob);
-    const rect = blob.getBoundingClientRect();
-    return {
-      element: blob,
-      originalX: 0, // Will be set relative to current position
-      originalY: 0,
-      currentX: 0,
-      currentY: 0,
-      targetX: 0,
-      targetY: 0
-    };
-  });
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let isMouseActive = false;
-
-  // Smooth mouse tracking
-  const handleMouseMove = throttle((e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    isMouseActive = true;
-    
-    // Calculate attraction for each blob
-    originalPositions.forEach((blobData, index) => {
-      const blob = blobData.element;
-      const rect = blob.getBoundingClientRect();
-      const blobCenterX = rect.left + rect.width / 2;
-      const blobCenterY = rect.top + rect.height / 2;
-      
-      // Calculate distance from mouse to blob center
-      const deltaX = mouseX - blobCenterX;
-      const deltaY = mouseY - blobCenterY;
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-      
-      // Attraction zone - only attract when mouse is reasonably close
-      const maxAttractionDistance = 500;
-      const attractionStrength = Math.max(0, 1 - distance / maxAttractionDistance);
-      
-      // Different attraction multipliers for each blob for variety
-      const multipliers = [0.3, 0.25, 0.35, 0.28];
-      const attraction = attractionStrength * multipliers[index];
-      
-      // Calculate target position - move towards mouse when close
-      blobData.targetX = deltaX * attraction;
-      blobData.targetY = deltaY * attraction;
-    });
-    
-    // Reset mouse active flag after a delay
-    clearTimeout(window.mouseActiveTimeout);
-    window.mouseActiveTimeout = setTimeout(() => {
-      isMouseActive = false;
-      // Return to original positions
-      originalPositions.forEach(blobData => {
-        blobData.targetX = 0;
-        blobData.targetY = 0;
-      });
-    }, 1000);
-  }, 16); // 60fps
-
-  // Animation loop for smooth blob movement
-  function animateBlobs() {
-    originalPositions.forEach((blobData) => {
-      // Smooth interpolation towards target
-      blobData.currentX += (blobData.targetX - blobData.currentX) * 0.1;
-      blobData.currentY += (blobData.targetY - blobData.currentY) * 0.1;
-      
-      // Apply transform
-      const transform = `translate3d(${blobData.currentX}px, ${blobData.currentY}px, 0)`;
-      blobData.element.style.transform = transform;
-    });
-    
-    requestAnimationFrame(animateBlobs);
-  }
-
-  // Start animation loop
-  animateBlobs();
-
-  // Mouse event listeners
-  window.addEventListener('mousemove', handleMouseMove, { passive: true });
-
-  // Reset blobs when mouse leaves viewport
-  window.addEventListener('mouseleave', () => {
-    isMouseActive = false;
-    originalPositions.forEach(blobData => {
-      blobData.targetX = 0;
-      blobData.targetY = 0;
-    });
-  }, { passive: true });
-}
-
 // ===== Project Card Mouse Following Effects =====
 function setupProjectCardMouseFollow() {
   if (prefersReducedMotion || window.innerWidth <= 768) {
@@ -265,14 +163,6 @@ function setupProjectCardMouseFollow() {
   });
 }
 
-// ===== Performance Monitor =====
-function logPerformanceMetrics() {
-  if (typeof performance !== 'undefined' && performance.mark) {
-    performance.mark('website-interactive');
-    console.log('🚀 Website loaded and interactive');
-  }
-}
-
 // ===== Intersection Observer for Performance =====
 function setupPerformanceOptimizedEffects() {
   // Only activate heavy effects when sections are visible
@@ -301,14 +191,11 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Enhanced visual effects (only on capable devices)
   if (!prefersReducedMotion && window.innerWidth > 768) {
-    setupBlobMouseAttraction();
     setupPerformanceOptimizedEffects();
   }
   
   // Mobile navigation
   $('#hamburger')?.addEventListener('click', toggleMenu);
-  
-  logPerformanceMetrics();
 });
 
 // ===== Cleanup on unload =====
