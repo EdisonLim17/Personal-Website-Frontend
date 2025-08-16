@@ -163,8 +163,8 @@ img {
 
   /* Transparent + blur */
   background: rgba(255, 255, 255, 0); /* fully transparent */
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .logo {
@@ -704,8 +704,8 @@ img {
     gap: 20px;
     padding: 20px;
     background: rgba(255, 255, 255, 0); /* fully transparent */
-    backdrop-filter: blur(12px) saturate(160%);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transform: scaleY(0);
     transform-origin: top;
     transition: transform 0.3s ease;
@@ -714,6 +714,14 @@ img {
 
   #navbar.active {
     transform: scaleY(1);
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    transition: background 0.3s ease;
+    z-index: 19;
   }
 
   .nav-links {
