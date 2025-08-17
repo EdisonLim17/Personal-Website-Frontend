@@ -120,7 +120,12 @@ function setupProjectCardMouseFollow() {
   cards.forEach(card => {
     let isHovered = false;
 
-    // Mouse move handler for blob following
+    // Create cursor border glow element
+    const cursorBorderGlow = document.createElement('div');
+    cursorBorderGlow.className = 'cursor-border-glow';
+    card.appendChild(cursorBorderGlow);
+
+    // Mouse move handler for effects
     const handleMouseMove = throttle((e) => {
       if (!isHovered) return;
 
@@ -132,7 +137,7 @@ function setupProjectCardMouseFollow() {
       const clampedX = Math.max(10, Math.min(90, x));
       const clampedY = Math.max(10, Math.min(90, y));
 
-      // Update CSS custom properties for the blob position
+      // Update CSS custom properties for effects
       card.style.setProperty('--mouse-x', `${clampedX}%`);
       card.style.setProperty('--mouse-y', `${clampedY}%`);
     }, 16);
@@ -153,7 +158,7 @@ function setupProjectCardMouseFollow() {
     card.addEventListener('mouseleave', () => {
       isHovered = false;
       
-      // Reset blob to center
+      // Reset position to center
       card.style.setProperty('--mouse-x', '50%');
       card.style.setProperty('--mouse-y', '50%');
     }, { passive: true });

@@ -397,7 +397,7 @@ img {
   display: inline-block;
   padding: 10px 16px;
   border-radius: 10px;
-  border: 1px solid var(--card-border);
+  border: 1px solid transparent;
   background: var(--card);
   color: var(--fg);
   text-decoration: none;
@@ -405,7 +405,22 @@ img {
   transition: all 0.3s ease;
 }
 
+/* Gradient border */
 .button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(90deg, var(--brand1), var(--brand2));
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+/* Sweep animation */
+.button::after {
   content: '';
   position: absolute;
   top: 0;
@@ -422,12 +437,11 @@ img {
   z-index: 1;
 }
 
-.button:hover::before {
+.button:hover::after {
   left: 100%;
 }
 
 .button:hover {
-  border-color: rgba(96, 165, 250, 0.3);
   box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
   background: rgba(255, 255, 255, 0.08);
 }
@@ -435,16 +449,36 @@ img {
 .button span {
   position: relative;
   z-index: 2;
-  transition: all 0.3s ease;
+  background: var(--fg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--fg);
+  background-clip: text;
+  transition: all 0.1s ease;
+  background-size: 300% 100%;
+  background-image: linear-gradient(90deg, var(--fg) 25%, var(--brand1) 40%, var(--brand2) 60%, var(--fg) 75%);
+  background-position: 0% 50%;
 }
 
-/* gradient text on hover */
+/* Animated gradient text that follows the sweep */
 .button:hover span {
-  background: linear-gradient(90deg, var(--brand1), var(--brand2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent;
+  animation: gradientSweep 0.6s ease forwards;
+}
+
+@keyframes gradientSweep {
+  0% {
+    background-position: -100% 50%;
+    background-image: linear-gradient(90deg, var(--fg) 25%, var(--brand1) 40%, var(--brand2) 60%, var(--fg) 75%);
+  }
+  50% {
+    background-image: linear-gradient(90deg, var(--brand1), var(--brand2));
+  }
+  100% {
+    background-position: 200% 50%;
+    background-image: linear-gradient(90deg, var(--fg) 25%, var(--brand1) 40%, var(--brand2) 60%, var(--fg) 75%);
+  }
 }
 
 /* ===== Simplified Project Cards ===== */
@@ -486,17 +520,36 @@ img {
   -webkit-backdrop-filter: blur(12px) saturate(160%);
 }
 
-/* Static blue/pink gradient border */
+/* Dynamic gradient border that lights up near cursor */
 .project-card::before {
   content: '';
   position: absolute;
   inset: 0;
   padding: 1px;
   background: linear-gradient(45deg, 
-    transparent, 
-    rgba(96, 165, 250, 0.4),
-    rgba(236, 72, 153, 0.4),
-    transparent
+    rgba(96, 165, 250, 0.2),
+    rgba(236, 72, 153, 0.2),
+    rgba(96, 165, 250, 0.2),
+    rgba(236, 72, 153, 0.2)
+  );
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+/* Bright border effect that follows cursor */
+.project-card .cursor-border-glow {
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: radial-gradient(150px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(96, 165, 250, 0.8) 0%,
+    rgba(236, 72, 153, 0.6) 30%,
+    transparent 70%
   );
   border-radius: inherit;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -505,6 +558,8 @@ img {
   -webkit-mask-composite: xor;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 4;
 }
 
 /* Mouse-following blob effect */
@@ -530,7 +585,7 @@ img {
   left: var(--mouse-x, 50%);
 }
 
-/* Simple hover state - just pop up */
+/* Simple hover state - card pops up */
 .project-card:hover {
   transform: translate3d(0, -12px, 0);
   box-shadow: 
@@ -539,8 +594,13 @@ img {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Activate border gradient on hover */
+/* Activate border effects on hover */
 .project-card:hover::before {
+  opacity: 1;
+}
+
+/* Show bright border glow on hover */
+.project-card:hover .cursor-border-glow {
   opacity: 1;
 }
 
