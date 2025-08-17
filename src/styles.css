@@ -392,12 +392,13 @@ img {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
 }
 
+/* ===== Updated Resume Button Styles ===== */
 .button {
   position: relative;
   display: inline-block;
   padding: 10px 16px;
   border-radius: 10px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Default subtle border */
   background: var(--card);
   color: var(--fg);
   text-decoration: none;
@@ -405,18 +406,33 @@ img {
   transition: all 0.3s ease;
 }
 
-/* Gradient border */
+/* Gradient border - animated on hover */
 .button::before {
   content: '';
   position: absolute;
   inset: 0;
   padding: 1px;
-  background: linear-gradient(90deg, var(--brand1), var(--brand2));
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.15) 25%, 
+    var(--brand1) 40%, 
+    var(--brand2) 60%, 
+    rgba(255, 255, 255, 0.15) 75%
+  );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
   border-radius: inherit;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Animate gradient border on hover */
+.button:hover::before {
+  opacity: 1;
+  animation: borderGradientSweep 0.6s ease forwards;
 }
 
 /* Sweep animation */
@@ -444,40 +460,42 @@ img {
 .button:hover {
   box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
   background: rgba(255, 255, 255, 0.08);
+  border-color: transparent;
 }
 
 .button span {
   position: relative;
   z-index: 2;
-  background: var(--fg);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: var(--fg);
-  background-clip: text;
-  transition: all 0.1s ease;
-  background-size: 300% 100%;
-  background-image: linear-gradient(90deg, var(--fg) 25%, var(--brand1) 40%, var(--brand2) 60%, var(--fg) 75%);
-  background-position: 0% 50%;
+  color: var(--fg);
+  transition: color 0.1s ease;
 }
 
-/* Animated gradient text that follows the sweep */
+/* Animated gradient text */
 .button:hover span {
+  background: linear-gradient(90deg, var(--fg) 25%, var(--brand1) 40%, var(--brand2) 60%, var(--fg) 75%);
+  background-size: 300% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientSweep 0.6s ease forwards;
+  animation: textGradientSweep 0.6s ease forwards;
 }
 
-@keyframes gradientSweep {
+@keyframes textGradientSweep {
   0% {
     background-position: -100% 50%;
-    background-image: linear-gradient(90deg, var(--fg) 25%, var(--brand1) 40%, var(--brand2) 60%, var(--fg) 75%);
-  }
-  50% {
-    background-image: linear-gradient(90deg, var(--brand1), var(--brand2));
   }
   100% {
     background-position: 200% 50%;
-    background-image: linear-gradient(90deg, var(--fg) 25%, var(--brand1) 40%, var(--brand2) 60%, var(--fg) 75%);
+  }
+}
+
+@keyframes borderGradientSweep {
+  0% {
+    background-position: -100% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
   }
 }
 
@@ -499,8 +517,8 @@ img {
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.08); /* translucent background */
-  border: 1px solid rgba(255, 255, 255, 0.15); /* subtle border */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius);
   padding: 18px;
   display: flex;
@@ -514,8 +532,6 @@ img {
               box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
               border-color 0.3s ease;
   transform: translate3d(0, 0, 0);
-
-  /* glass effect core */
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
 }
@@ -585,12 +601,12 @@ img {
   left: var(--mouse-x, 50%);
 }
 
-/* Simple hover state - card pops up */
+/* Entire card pops up on hover - increased transform */
 .project-card:hover {
-  transform: translate3d(0, -12px, 0);
+  transform: translate3d(0, -16px, 0); /* Increased from -12px */
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.6),
-    0 0 40px rgba(96, 165, 250, 0.3);
+    0 32px 64px rgba(0, 0, 0, 0.7), /* Enhanced shadow */
+    0 0 50px rgba(96, 165, 250, 0.4);
   border-color: rgba(255, 255, 255, 0.25);
 }
 
@@ -611,6 +627,7 @@ img {
   opacity: 1;
 }
 
+/* Reduce image transform since entire card moves now */
 .project-card img {
   width: 100%;
   height: 220px;
@@ -624,7 +641,7 @@ img {
 }
 
 .project-card:hover img {
-  transform: translate3d(0, 0, 0) scale(1.05);
+  transform: translate3d(0, 0, 0) scale(1.02); /* Reduced from 1.05 */
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
@@ -763,25 +780,21 @@ img {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0); /* fully transparent */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0); /* Fully transparent by default */
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
     z-index: 19;
   }
 
   #navbar.active {
     transform: scaleY(1);
-    background: rgba(0, 0, 0, 0.5); /* semi-transparent */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 16px;
-    transition: background 0.3s ease;
-    z-index: 19;
+    background: rgba(0, 0, 0, 0.7); /* Dark translucent background */
+    border-radius: 0 0 12px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: none;
   }
 
   .nav-links {
@@ -831,12 +844,13 @@ img {
     height: 400px;
   }
   
+  /* Enhanced card hover for mobile */
   .project-card:hover {
-    transform: translate3d(0, -6px, 0);
+    transform: translate3d(0, -8px, 0); /* Reduced for mobile */
   }
   
   .project-card:hover img {
-    transform: translate3d(0, 0, 0) scale(1.03);
+    transform: translate3d(0, 0, 0) scale(1.01); /* Further reduced for mobile */
   }
   
   /* Simplify card effects on mobile */
