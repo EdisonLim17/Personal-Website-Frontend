@@ -564,11 +564,12 @@ img {
 .project-card .cursor-border-glow {
   position: absolute;
   inset: 0;
-  padding: 2px;
-  background: radial-gradient(200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-    var(--brand1) 0%,
-    var(--brand2) 40%,
-    transparent 70%
+  padding: 2px; /* Subtle thickness increase */
+  background: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    rgba(255, 255, 255, 0.1) 70%,
+    transparent 90%
   );
   border-radius: inherit;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -576,9 +577,10 @@ img {
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease, padding 0.3s ease;
   pointer-events: none;
-  z-index: 4;
+  z-index: 5;
+  mix-blend-mode: overlay; /* This will brighten/make more vivid without changing colors */
 }
 
 /* Updated cursor-following blob effect */
@@ -607,7 +609,7 @@ img {
 /* Activate border effects on hover */
 .project-card:hover::before {
   opacity: 1;
-  animation: gradientShift 1.5s ease-in-out infinite;
+  animation: gradientShift 3s ease-in-out infinite; /* Changed to 4s for even slower animation */
 }
 
 /* Entire card scales up on hover */
@@ -788,7 +790,7 @@ img {
   
   .project-card:hover::before {
     opacity: 1;
-    animation: gradientShift 1.5s ease-in-out infinite;
+    animation: gradientShift 3s ease-in-out infinite; /* Ensure consistency */
   }
   
   .project-card:hover::after {
