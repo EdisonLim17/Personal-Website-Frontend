@@ -60,16 +60,19 @@ function toggleMenu(){
 
 // ===== Smooth Scroll + Active Link Highlight =====
 function setupInPageNav(){
-  $$('#navbar a').forEach(a => {
+  const navLinks = $$('#navbar a'); // Changed $ to $$ to get array
+  navLinks.forEach(a => {
     a.addEventListener('click', evt => {
-      $('#navbar').classList.remove('active');
-      $('#hamburger').setAttribute('aria-expanded','false');
+      const navbar = $('#navbar');
+      const hamburger = $('#hamburger');
+      if (navbar) navbar.classList.remove('active');
+      if (hamburger) hamburger.setAttribute('aria-expanded','false');
     });
   });
 
   // Throttled intersection observer for better performance
-  const sections = $$('.section');
-  const links = $$('#navbar a');
+  const sections = $$('.section'); // Changed $ to $$ to get array
+  const links = $$('#navbar a'); // Changed $ to $$ to get array
 
   const io = new IntersectionObserver(throttle((entries) => {
     entries.forEach(entry => {
@@ -84,23 +87,23 @@ function setupInPageNav(){
 }
 
 // ===== Card Reveal on Scroll (Optimized) =====
-function revealProjects(){
+function revealProjects() {
   if (prefersReducedMotion) {
-    // Skip animations for reduced motion users
-    $$('.project-card').forEach(c => c.style.opacity = 1);
+    const cards = $$('.project-card');
+    cards.forEach(c => c.style.opacity = 1);
     return;
   }
 
   const cards = $$('.project-card');
-  cards.forEach(c => c.style.opacity = 0);
+  cards.forEach(c => {
+    c.style.opacity = 0;
+    c.style.transition = 'opacity 0.3s ease'; // Only animate opacity
+  });
   
-  const io = new IntersectionObserver((entries, obs)=>{
+  const io = new IntersectionObserver((entries, obs) => {
     entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.animate([
-          { transform: 'translateY(8px)', opacity: 0 },
-          { transform: 'translateY(0)', opacity: 1 }
-        ], { duration: 200, easing: 'ease-out', fill: 'forwards' });
+      if(e.isIntersecting) {
+        e.target.style.opacity = '1';
         obs.unobserve(e.target);
       }
     });
@@ -111,59 +114,32 @@ function revealProjects(){
 
 // ===== Project Card Mouse Following Effects =====
 function setupProjectCardMouseFollow() {
-  if (prefersReducedMotion || window.innerWidth <= 768) {
-    return; // Skip on mobile or reduced motion
-  }
+  if (prefersReducedMotion || window.innerWidth <= 768) return;
 
   const cards = $$('.project-card');
   
   cards.forEach(card => {
-    let isHovered = false;
-
-    // Create cursor border glow element
+    // Remove any existing transition properties
+    card.style.transition = '';
+    
     const cursorBorderGlow = document.createElement('div');
     cursorBorderGlow.className = 'cursor-border-glow';
     card.appendChild(cursorBorderGlow);
 
-    // Mouse move handler for effects
     const handleMouseMove = throttle((e) => {
-      if (!isHovered) return;
-
       const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-      // Clamp values to reasonable bounds
-      const clampedX = Math.max(10, Math.min(90, x));
-      const clampedY = Math.max(10, Math.min(90, y));
-
-      // Update CSS custom properties for effects
-      card.style.setProperty('--mouse-x', `${clampedX}%`);
-      card.style.setProperty('--mouse-y', `${clampedY}%`);
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
     }, 16);
 
-    // Hover events
-    card.addEventListener('mouseenter', (e) => {
-      isHovered = true;
-      
-      // Initialize mouse position
-      const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
-    }, { passive: true });
+    card.addEventListener('mouseenter', () => {
+      cursorBorderGlow.style.opacity = '1';
+    });
 
     card.addEventListener('mouseleave', () => {
-      isHovered = false;
-      
-      // Reset position to center
-      card.style.setProperty('--mouse-x', '50%');
-      card.style.setProperty('--mouse-y', '50%');
-    }, { passive: true });
+      cursorBorderGlow.style.opacity = '0';
+    });
 
-    // Mouse move tracking
     card.addEventListener('mousemove', handleMouseMove, { passive: true });
   });
 }
@@ -192,21 +168,25 @@ window.addEventListener('DOMContentLoaded', () => {
   // Core functionality
   updateCounter();
   setupInPageNav();
-  revealProjects();
   
   // Enhanced visual effects (only on capable devices)
   if (!prefersReducedMotion && window.innerWidth > 768) {
     setupPerformanceOptimizedEffects();
   }
+
+  revealProjects();
   
   // Mobile navigation
-  $('#hamburger')?.addEventListener('click', toggleMenu);
+  const hamburgerBtn = $('#hamburger');
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', toggleMenu);
+  }
 });
 
 // ===== Cleanup on unload =====
 window.addEventListener('beforeunload', () => {
   // Cancel any pending animations
-  const cards = $$('.project-card');
+  const cards = $('.project-card');
   cards.forEach(card => {
     card.style.setProperty('--mouse-x', '50%');
     card.style.setProperty('--mouse-y', '50%');
