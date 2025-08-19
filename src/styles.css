@@ -358,7 +358,7 @@ img {
   z-index: 2;
 }
 
-/* ===== About Section ===== */
+/* ===== About Section with Enhanced Mouse Effects ===== */
 .about-grid {
   max-width: 1100px;
   margin: 0 auto;
@@ -366,7 +366,7 @@ img {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.03); /* More transparent */
+  background: rgba(255, 255, 255, 0.01); /* More transparent */
   border: 1px solid rgba(255, 255, 255, 0.2); /* More visible border */
   border-radius: var(--radius);
   padding: 40px;
@@ -378,18 +378,68 @@ img {
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight for glass effect */
+  cursor: pointer;
 }
 
-.about-grid:hover {
-  background: rgba(255, 255, 255, 0.06); /* Slightly less transparent on hover */
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Enhanced inner highlight */
+/* Mouse following blob for about section */
+.about-grid::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, 
+    rgba(96, 165, 250, 0.08) 0%,
+    rgba(236, 72, 153, 0.06) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  top: var(--mouse-y, 50%);
+  left: var(--mouse-x, 50%);
+}
+
+/* Border glow effect that follows cursor for about section */
+.about-grid .cursor-border-glow {
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: radial-gradient(250px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.2) 70%,
+    transparent 90%
+  );
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.4s ease, padding 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: overlay;
+}
+
+.about-grid:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.about-grid:hover .cursor-border-glow {
+  opacity: 1;
 }
 
 .about-text {
   font-size: 18px;
+  position: relative;
+  z-index: 2;
 }
 
 .about-photo {
@@ -397,6 +447,13 @@ img {
   border-radius: 12px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
   margin-inline: auto;
+  position: relative;
+  z-index: 2;
+  transition: box-shadow 0.3s ease;
+}
+
+.about-grid:hover .about-photo {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== Resume Section ===== */
@@ -925,6 +982,12 @@ img {
   .project-card::after {
     display: none;
   }
+  
+  /* Disable about section effects on mobile */
+  .about-grid::after,
+  .about-grid .cursor-border-glow {
+    display: none;
+  }
 }
 
 /* Performance mode for slower devices */
@@ -943,6 +1006,11 @@ img {
   .project-card::before {
     display: none;
   }
+  
+  .about-grid::after,
+  .about-grid .cursor-border-glow {
+    display: none;
+  }
 }
 
 /* ===== Reduced Motion ===== */
@@ -955,5 +1023,12 @@ img {
   
   .blob {
     animation: none !important;
+  }
+  
+  .about-grid::after,
+  .about-grid .cursor-border-glow,
+  .project-card::after,
+  .project-card .cursor-border-glow {
+    display: none !important;
   }
 }
