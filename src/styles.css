@@ -366,6 +366,26 @@ img {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
   align-items: center;
+  background: rgba(255, 255, 255, 0.03); /* More transparent */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* More visible border */
+  border-radius: var(--radius);
+  padding: 40px;
+  backdrop-filter: blur(20px); /* Increased blur */
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight for glass effect */
+}
+
+.about-grid:hover {
+  background: rgba(255, 255, 255, 0.06); /* Slightly less transparent on hover */
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Enhanced inner highlight */
 }
 
 .about-text {
@@ -398,14 +418,18 @@ img {
   display: inline-block;
   padding: 10px 16px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Default subtle border */
-  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* More visible border */
+  background: rgba(255, 255, 255, 0.03); /* More transparent */
   color: var(--fg);
   text-decoration: none;
   overflow: hidden;
   transition: all 0.3s ease;
+  backdrop-filter: blur(20px) saturate(180%); /* Increased blur and saturation */
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight */
 }
-
 /* Gradient border - animated on hover */
 .button::before {
   content: '';
@@ -458,9 +482,12 @@ img {
 }
 
 .button:hover {
-  box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: transparent;
+  box-shadow: 
+    0 0 20px rgba(96, 165, 250, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Enhanced inner highlight */
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .button span {
@@ -517,8 +544,8 @@ img {
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03); /* More transparent */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* More visible border */
   border-radius: var(--radius);
   padding: 18px;
   display: flex;
@@ -530,11 +557,15 @@ img {
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
               box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
-              border-color 0.4s ease;
+              border-color 0.4s ease,
+              background 0.3s ease;
   transform: translate3d(0, 0, 0) scale(1);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(20px); /* Increased blur */
+  -webkit-backdrop-filter: blur(20px);
   transform-origin: center;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight for glass effect */
 }
 
 /* Blue to pink gradient border - only on hover */
@@ -615,10 +646,12 @@ img {
 /* Entire card scales up on hover */
 .project-card:hover {
   transform: translate3d(0, -16px, 0) scale(1.05);
+  background: rgba(255, 255, 255, 0.06); /* Slightly less transparent on hover */
   box-shadow: 
     0 32px 64px rgba(0, 0, 0, 0.7),
-    0 0 50px rgba(96, 165, 250, 0.4);
-  border-color: rgba(255, 255, 255, 0.25);
+    0 0 50px rgba(96, 165, 250, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Enhanced inner highlight */
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Expand mouse-following blob on hover */
