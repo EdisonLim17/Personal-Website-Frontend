@@ -625,20 +625,26 @@ img {
     inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight for glass effect */
 }
 
+@property --deg{
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
 /* Blue to pink gradient border - only on hover */
 .project-card::before {
   content: '';
   position: absolute;
   inset: 0;
   padding: 1px;
-  background: linear-gradient(45deg, 
-    var(--brand1) 0%,
-    var(--brand2) 25%,
-    var(--brand1) 50%,
-    var(--brand2) 75%,
-    var(--brand1) 100%
+  background: conic-gradient(
+    from var(--deg) at center, 
+    var(--brand1),
+    var(--brand2),
+    var(--brand1),
+    var(--brand2),
+    var(--brand1)
   );
-  background-size: 400% 400%;
   border-radius: inherit;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
@@ -697,7 +703,7 @@ img {
 /* Activate border effects on hover */
 .project-card:hover::before {
   opacity: 1;
-  animation: gradientShift 3s ease-in-out infinite; /* Changed to 4s for even slower animation */
+  animation: gradientShift 3s linear infinite; /* Changed to 4s for even slower animation */
 }
 
 /* Entire card scales up on hover */
@@ -808,14 +814,8 @@ img {
 
 /* Gradient shift animation for border */
 @keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+  to{
+    --deg: 360deg;
   }
 }
 
@@ -880,7 +880,7 @@ img {
   
   .project-card:hover::before {
     opacity: 1;
-    animation: gradientShift 3s ease-in-out infinite; /* Ensure consistency */
+    animation: gradientShift 3s linear infinite; /* Ensure consistency */
   }
   
   .project-card:hover::after {
