@@ -391,7 +391,8 @@ function initResumeScrollAnimation() {
   
   if (!resumeFigure) return;
   
-  const observer = new IntersectionObserver((entries) => {
+  // Observer for resume container and image
+  const resumeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         // Animate resume container first
@@ -402,12 +403,7 @@ function initResumeScrollAnimation() {
           if (resumeImage) resumeImage.classList.add('animate-in');
         }, 300);
         
-        // Finally animate button
-        setTimeout(() => {
-          if (resumeButton) resumeButton.classList.add('animate-in');
-        }, 600);
-        
-        observer.unobserve(entry.target);
+        resumeObserver.unobserve(entry.target);
       }
     });
   }, {
@@ -415,7 +411,51 @@ function initResumeScrollAnimation() {
     rootMargin: '0px 0px 100px 0px'
   });
   
-  observer.observe(resumeFigure);
+  // Separate observer for the button at the bottom
+  const buttonObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        buttonObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1, // Trigger when button comes into view
+    rootMargin: '0px 0px 50px 0px' // Start animation when button is 50px from viewport
+  });
+  
+  resumeObserver.observe(resumeFigure);
+  if (resumeButton) {
+    buttonObserver.observe(resumeButton);
+  }
+}
+
+// ===== Scroll Animation for Footer =====
+function initFooterScrollAnimation() {
+  const footerContent = document.querySelector('.footer-content p');
+  const footerLinks = document.querySelector('.footer-links');
+  
+  if (!footerContent) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate both elements simultaneously for "meeting in the middle" effect
+        if (footerContent) footerContent.classList.add('animate-in');
+        if (footerLinks) footerLinks.classList.add('animate-in');
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.5, // Trigger when 50% of the footer is visible
+    rootMargin: '0px 0px 0px 0px'
+  });
+  
+  const footer = document.querySelector('.site-footer');
+  if (footer) {
+    observer.observe(footer);
+  }
 }
 
 // Initialize all scroll animations when DOM is loaded
@@ -424,9 +464,11 @@ if (document.readyState === 'loading') {
     initScrollAnimations();
     initAboutScrollAnimation();
     initResumeScrollAnimation();
+    initFooterScrollAnimation();
   });
 } else {
   initScrollAnimations();
   initAboutScrollAnimation();
   initResumeScrollAnimation();
+  initFooterScrollAnimation();
 }

@@ -973,6 +973,98 @@ img {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 600;
+  
+  /* Animation styles - slide from left edge with bounce */
+  opacity: 0;
+  transform: translateX(-100vw);
+}
+
+.footer-content p.animate-in {
+  opacity: 1;
+  animation: slideInBounceLeft 2s ease-out forwards;
+}
+
+/* Slide in from left with super fluid bounce effect */
+@keyframes slideInBounceLeft {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  35% {
+    transform: translateX(-8px);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.68, -0.8, 0.32, 1.8);
+  }
+  50% {
+    transform: translateX(-20px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  55% {
+    transform: translateX(-18px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  60% {
+    transform: translateX(-15px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  65% {
+    transform: translateX(-12px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  68% {
+    transform: translateX(-8px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  70% {
+    transform: translateX(-5px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  72% {
+    transform: translateX(-3px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.2);
+  }
+  75% {
+    transform: translateX(-7px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  83% {
+    transform: translateX(-6px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.1);
+  }
+  88% {
+    transform: translateX(-1px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.05);
+  }
+  94% {
+    transform: translateX(-2px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.2);
+  }
+  97% {
+    transform: translateX(-0.5px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.1);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Gentle pulse animation for connect message */
+@keyframes connectPulse {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  50% {
+    transform: translateX(0) scale(1.03);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+.footer-content p.animate-in {
+  animation: slideInBounceLeft 2s ease-out forwards,
+             connectPulse 3s ease-in-out infinite 2.5s;
 }
 
 .footer-links {
@@ -980,6 +1072,80 @@ img {
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  
+  /* Animation styles - slide from right edge with bounce */
+  opacity: 0;
+  transform: translateX(100vw);
+}
+
+.footer-links.animate-in {
+  opacity: 1;
+  animation: slideInBounceRight 2s ease-out forwards;
+}
+
+/* Slide in from right with super fluid bounce effect */
+@keyframes slideInBounceRight {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  35% {
+    transform: translateX(8px);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.68, -0.8, 0.32, 1.8);
+  }
+  50% {
+    transform: translateX(20px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  55% {
+    transform: translateX(18px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  60% {
+    transform: translateX(15px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  65% {
+    transform: translateX(12px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  68% {
+    transform: translateX(8px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  70% {
+    transform: translateX(5px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  72% {
+    transform: translateX(3px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.2);
+  }
+  75% {
+    transform: translateX(7px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  83% {
+    transform: translateX(6px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.1);
+  }
+  88% {
+    transform: translateX(1px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.05);
+  }
+  94% {
+    transform: translateX(2px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.2);
+  }
+  97% {
+    transform: translateX(0.5px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.1);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .icon-footer {
