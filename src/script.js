@@ -299,16 +299,49 @@ function initScrollAnimations() {
   
   if (projectCards.length === 0) return;
   
+  // Group cards by rows (assuming 2 cards per row)
+  const cardsPerRow = 2;
+  const cardRows = [];
+  
+  for (let i = 0; i < projectCards.length; i += cardsPerRow) {
+    cardRows.push(Array.from(projectCards).slice(i, i + cardsPerRow));
+  }
+  
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-        observer.unobserve(entry.target); // Only animate once
+        // Find which row this card belongs to
+        let rowIndex = -1;
+        cardRows.forEach((row, index) => {
+          if (row.includes(entry.target)) {
+            rowIndex = index;
+          }
+        });
+        
+        if (rowIndex !== -1) {
+          // Animate all cards in this row simultaneously
+          cardRows[rowIndex].forEach((card, cardIndex) => {
+            setTimeout(() => {
+              card.classList.add('animate-in');
+              
+              // Add animation-complete class after animation finishes
+              setTimeout(() => {
+                card.classList.add('animation-complete');
+              }, 800); // Match the animation duration
+              
+            }, cardIndex * 50); // Small stagger within the row (50ms between cards in same row)
+          });
+          
+          // Unobserve all cards in this row since we've animated them
+          cardRows[rowIndex].forEach(card => {
+            observer.unobserve(card);
+          });
+        }
       }
     });
   }, {
-    threshold: 0, // Trigger as soon as any part of the card is visible
-    rootMargin: '0px 0px 100px 0px' // Start animation 100px before card enters viewport
+    threshold: 0.1, // Trigger when 10% of the card is visible
+    rootMargin: '0px 0px 50px 0px' // Start animation 50px before card enters viewport
   });
   
   projectCards.forEach(card => {
