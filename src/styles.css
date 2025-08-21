@@ -1224,17 +1224,6 @@ img[src*="githublogo"].icon-footer:hover {
 
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-  /* Make icons larger and more visible on mobile */
-  .icon {
-    inline-size: 28px;
-    block-size: 28px;
-  }
-  
-  .icon-footer {
-    inline-size: 24px;
-    block-size: 24px;
-  }
-  
   /* Adjust GitHub logo scaling for larger mobile icons */
   img[src*="githublogo"] {
     transform: scale(1.15);
