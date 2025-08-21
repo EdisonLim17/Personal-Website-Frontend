@@ -285,3 +285,33 @@ window.addEventListener('resize', debounce(() => {
     }
   }
 }, 250));
+
+// Scroll animation for project cards
+function initScrollAnimations() {
+  const projectCards = document.querySelectorAll('.project-card');
+  
+  if (projectCards.length === 0) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        observer.unobserve(entry.target); // Only animate once
+      }
+    });
+  }, {
+    threshold: 0, // Trigger as soon as any part of the card is visible
+    rootMargin: '0px 0px 100px 0px' // Start animation 100px before card enters viewport
+  });
+  
+  projectCards.forEach(card => {
+    observer.observe(card);
+  });
+}
+
+// Initialize scroll animations when DOM is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initScrollAnimations);
+} else {
+  initScrollAnimations();
+}
