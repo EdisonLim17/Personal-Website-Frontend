@@ -90,24 +90,36 @@ function setupInPageNav(){
 function revealProjects() {
   if (prefersReducedMotion) {
     const cards = $$('.project-card');
-    cards.forEach(c => c.style.opacity = 1);
+    cards.forEach(c => {
+      c.classList.add('animate-in');
+      c.classList.add('animation-complete');
+    });
     return;
   }
 
   const cards = $$('.project-card');
-  cards.forEach(c => {
-    c.style.opacity = 0;
-    c.style.transition = 'opacity 0.3s ease';
-  });
   
   const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(e => {
+    entries.forEach((e, index) => {
       if(e.isIntersecting) {
-        e.target.style.opacity = '1';
+        // Stagger the animations with a small delay
+        setTimeout(() => {
+          e.target.classList.add('animate-in');
+          
+          // Mark animation as complete after it finishes
+          setTimeout(() => {
+            e.target.classList.add('animation-complete');
+          }, 800); // Match the 0.8s animation duration
+          
+        }, index * 100); // 100ms stagger between cards
+        
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { 
+    threshold: 0.1,
+    rootMargin: '0px 0px 50px 0px' // Start animation earlier
+  });
   
   cards.forEach(c => io.observe(c));
 }
