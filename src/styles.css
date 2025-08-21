@@ -162,7 +162,7 @@ img {
   z-index: 20;
 
   /* Transparent + blur */
-  background: rgba(255, 255, 255, 0); /* fully transparent */
+  background: rgba(255, 255, 255, 0);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -366,18 +366,18 @@ img {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.01); /* More transparent */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* More visible border */
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius);
   padding: 40px;
-  backdrop-filter: blur(20px); /* Increased blur */
+  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight for glass effect */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 
@@ -423,6 +423,7 @@ img {
   opacity: 0;
   transition: opacity 0.4s ease, padding 0.3s ease;
   pointer-events: none;
+  visibility: hidden;
   z-index: 5;
   mix-blend-mode: overlay;
 }
@@ -434,6 +435,7 @@ img {
 
 .about-grid:hover .cursor-border-glow {
   opacity: 1;
+  visibility: visible;
 }
 
 .about-text {
@@ -475,17 +477,17 @@ img {
   display: inline-block;
   padding: 10px 16px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* More visible border */
-  background: rgba(255, 255, 255, 0.03); /* More transparent */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--fg);
   text-decoration: none;
   overflow: hidden;
   transition: all 0.3s ease;
-  backdrop-filter: blur(20px) saturate(180%); /* Increased blur and saturation */
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 /* Gradient border - animated on hover */
 .button::before {
@@ -542,7 +544,7 @@ img {
   box-shadow: 
     0 0 20px rgba(96, 165, 250, 0.2),
     0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Enhanced inner highlight */
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.3);
 }
@@ -620,35 +622,9 @@ img {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transform-origin: center;
-  
-  /* Scroll animation - initial hidden state */
-  opacity: 0;
-  transform: translateY(60px) scale(0.9);
-  animation: none;
-}
-
-/* Animation when card comes into view */
-.project-card.animate-in {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes slideInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(60px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.project-card {
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner highlight for glass effect */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 @property --deg{
@@ -699,6 +675,7 @@ img {
   opacity: 0;
   transition: opacity 0.4s ease, padding 0.3s ease;
   pointer-events: none;
+  visibility: hidden;
   z-index: 5;
   mix-blend-mode: overlay; /* This will brighten/make more vivid without changing colors */
 }
@@ -735,11 +712,11 @@ img {
 /* Entire card scales up on hover */
 .project-card:hover {
   transform: translate3d(0, -16px, 0) scale(1.05);
-  background: rgba(255, 255, 255, 0.06); /* Slightly less transparent on hover */
+  background: rgba(255, 255, 255, 0.06);
   box-shadow: 
     0 32px 64px rgba(0, 0, 0, 0.7),
     0 0 50px rgba(96, 165, 250, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Enhanced inner highlight */
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -752,6 +729,7 @@ img {
 /* Show bright border glow on hover */
 .project-card:hover .cursor-border-glow {
   opacity: 1;
+  visibility: visible;
 }
 
 .project-card img {
@@ -935,7 +913,7 @@ img {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0); /* Fully transparent by default */
+    background: rgba(255, 255, 255, 0);
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
     transform: scaleY(0);
@@ -946,7 +924,7 @@ img {
 
   #navbar.active {
     transform: scaleY(1);
-    background: rgba(0, 0, 0, 0.7); /* Dark translucent background */
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 0 0 12px 12px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-top: none;

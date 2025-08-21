@@ -152,16 +152,19 @@ function setupAboutMeMouseFollow() {
   }, 16);
 
   // Mouse enter/leave handlers
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e) => {
     if (!prefersReducedMotion) {
       cursorBorderGlow.style.transition = 'opacity 0.3s ease';
+      // Set initial mouse position to prevent blob appearing at center
+      const rect = aboutGrid.getBoundingClientRect();
+      aboutGrid.style.setProperty('--mouse-x', `${(e.clientX - rect.left) / rect.width * 100}%`);
+      aboutGrid.style.setProperty('--mouse-y', `${(e.clientY - rect.top) / rect.height * 100}%`);
     }
   };
 
   const handleMouseLeave = () => {
     cursorBorderGlow.style.opacity = '0';
-    aboutGrid.style.setProperty('--mouse-x', '50%');
-    aboutGrid.style.setProperty('--mouse-y', '50%');
+    // Remove the mouse position reset to prevent teleportation
   };
 
   // Add event listeners
@@ -186,12 +189,16 @@ function setupProjectCardMouseFollow() {
 
     const handleMouseMove = throttle((e) => {
       const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      card.style.setProperty('--mouse-x', `${(e.clientX - rect.left) / rect.width * 100}%`);
+      card.style.setProperty('--mouse-y', `${(e.clientY - rect.top) / rect.height * 100}%`);
     }, 16);
 
-    card.addEventListener('mouseenter', () => {
+    card.addEventListener('mouseenter', (e) => {
       cursorBorderGlow.style.opacity = '1';
+      // Set initial mouse position to prevent lag/blob appearing at center
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${(e.clientX - rect.left) / rect.width * 100}%`);
+      card.style.setProperty('--mouse-y', `${(e.clientY - rect.top) / rect.height * 100}%`);
     });
 
     card.addEventListener('mouseleave', () => {
@@ -285,33 +292,3 @@ window.addEventListener('resize', debounce(() => {
     }
   }
 }, 250));
-
-// Scroll animation for project cards
-function initScrollAnimations() {
-  const projectCards = document.querySelectorAll('.project-card');
-  
-  if (projectCards.length === 0) return;
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-        observer.unobserve(entry.target); // Only animate once
-      }
-    });
-  }, {
-    threshold: 0, // Trigger as soon as any part of the card is visible
-    rootMargin: '0px 0px 100px 0px' // Start animation 100px before card enters viewport
-  });
-  
-  projectCards.forEach(card => {
-    observer.observe(card);
-  });
-}
-
-// Initialize scroll animations when DOM is loaded
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initScrollAnimations);
-} else {
-  initScrollAnimations();
-}
