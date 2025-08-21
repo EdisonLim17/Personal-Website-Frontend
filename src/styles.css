@@ -1369,8 +1369,6 @@ img[src*="githublogo"].icon-footer:hover {
   
   /* Touch-friendly icons */
   .icon, .icon-footer {
-    /* Add padding for larger touch targets */
-    padding: 6px;
     border-radius: 50%;
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
@@ -1441,11 +1439,6 @@ img[src*="githublogo"].icon-footer:hover {
   .nav-link {
     padding: 16px 20px;
     font-size: 18px;
-  }
-  
-  /* Larger touch targets for icons on smaller screens */
-  .icon, .icon-footer {
-    padding: 10px;
   }
 }
 
