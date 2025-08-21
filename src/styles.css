@@ -519,8 +519,8 @@ img {
   /* Initial hidden state with 3D effect */
   opacity: 0;
   transform: rotateX(20deg) translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s,
-              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s,
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               box-shadow 0.6s ease;
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -542,8 +542,8 @@ img {
   /* Scroll animation - initial hidden state */
   opacity: 0;
   transform: translateY(40px) scale(0.8);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s,
-              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s,
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               box-shadow 0.3s ease,
               border-color 0.3s ease;
 }
@@ -1156,6 +1156,23 @@ img {
 
 .icon-footer:hover {
   transform: scale(1.1);
+}
+
+/* Compensate for GitHub logo having more internal padding */
+img[src*="githublogo"] {
+  transform: scale(1.15);
+}
+
+img[src*="githublogo"].icon-footer {
+  transform: scale(1.2);
+}
+
+img[src*="githublogo"]:hover {
+  transform: scale(1.265); /* 1.15 * 1.1 */
+}
+
+img[src*="githublogo"].icon-footer:hover {
+  transform: scale(1.32); /* 1.2 * 1.1 */
 }
 
 /* Desktop hover effects */
