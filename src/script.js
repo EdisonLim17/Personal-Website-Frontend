@@ -407,8 +407,8 @@ function initResumeScrollAnimation() {
       }
     });
   }, {
-    threshold: 0.2, // Trigger when 20% of the resume section is visible
-    rootMargin: '0px 0px 100px 0px'
+    threshold: 0.1, // Trigger when 10% of the resume section is visible
+    rootMargin: '0px 0px 100px 0px' // Start animation 200px before resume section enters viewport
   });
   
   // Separate observer for the button at the bottom

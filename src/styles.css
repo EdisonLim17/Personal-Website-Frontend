@@ -1160,7 +1160,7 @@ img {
 
 /* Compensate for GitHub logo having more internal padding */
 img[src*="githublogo"] {
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
 
 img[src*="githublogo"].icon-footer {
