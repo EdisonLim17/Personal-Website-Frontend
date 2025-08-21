@@ -349,9 +349,47 @@ function initScrollAnimations() {
   });
 }
 
-// Initialize scroll animations when DOM is loaded
+// ===== Scroll Animation for About Section =====
+function initAboutScrollAnimation() {
+  const aboutGrid = document.querySelector('.about-grid');
+  const aboutText = document.querySelector('.about-text');
+  const aboutPhoto = document.querySelector('.about-photo');
+  
+  if (!aboutGrid) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate about grid first
+        entry.target.classList.add('animate-in');
+        
+        // Then animate text and photo with stagger
+        setTimeout(() => {
+          if (aboutText) aboutText.classList.add('animate-in');
+        }, 200);
+        
+        setTimeout(() => {
+          if (aboutPhoto) aboutPhoto.classList.add('animate-in');
+        }, 400);
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2, // Trigger when 20% of the about section is visible
+    rootMargin: '0px 0px 50px 0px'
+  });
+  
+  observer.observe(aboutGrid);
+}
+
+// Initialize both scroll animations when DOM is loaded
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initScrollAnimations);
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+    initAboutScrollAnimation();
+  });
 } else {
   initScrollAnimations();
+  initAboutScrollAnimation();
 }
