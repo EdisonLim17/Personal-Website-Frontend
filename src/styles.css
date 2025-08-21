@@ -20,6 +20,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Improve touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -30,11 +32,27 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Improve touch interactions */
+  touch-action: manipulation;
 }
 
 img {
   max-width: 100%;
   display: block;
+}
+
+/* Touch-friendly focus styles */
+*:focus-visible {
+  outline: 2px solid var(--brand1);
+  outline-offset: 2px;
+}
+
+/* Remove tap highlight on touch devices */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ===== Enhanced Background Blobs ===== */
@@ -1280,9 +1298,70 @@ img[src*="githublogo"].icon-footer:hover {
     height: 400px;
   }
   
-  /* Enhanced card hover for mobile */
-  .project-card:hover {
-    transform: translate3d(0, -8px, 0) scale(1.02); /* Reduced scale for mobile */
+  /* Touch-friendly interactions */
+  .project-card {
+    /* Remove hover effects and add touch-friendly ones */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Increase touch target size */
+    min-height: 44px;
+  }
+  
+  .project-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Touch-friendly buttons */
+  .cta, .button {
+    /* Ensure minimum touch target size of 44px */
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .cta:active, .button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Touch-friendly navigation links */
+  .nav-link {
+    padding: 12px 16px;
+    border-radius: 8px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
+  }
+  
+  .nav-link:active {
+    background-color: rgba(96, 165, 250, 0.1);
+  }
+  
+  /* Touch-friendly icons */
+  .icon, .icon-footer {
+    /* Add padding for larger touch targets */
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .icon:active, .icon-footer:active {
+    background-color: rgba(96, 165, 250, 0.1);
+    transform: scale(0.9);
+  }
+  
+  /* Touch-friendly hamburger menu */
+  .hamburger {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .hamburger:active {
+    background-color: rgba(96, 165, 250, 0.1);
   }
   
   /* Simplify card effects on mobile */
@@ -1294,6 +1373,11 @@ img[src*="githublogo"].icon-footer:hover {
   .about-grid::after,
   .about-grid .cursor-border-glow {
     display: none;
+  }
+  
+  /* Touch-friendly about grid */
+  .about-grid:active {
+    transform: scale(0.99);
   }
 }
 
@@ -1317,6 +1401,51 @@ img[src*="githublogo"].icon-footer:hover {
   .about-grid::after,
   .about-grid .cursor-border-glow {
     display: none;
+  }
+  
+  /* Extra touch-friendly adjustments for small screens */
+  .cta, .button {
+    padding: 16px 24px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .nav-link {
+    padding: 16px 20px;
+    font-size: 18px;
+  }
+  
+  /* Larger touch targets for icons */
+  .icon, .icon-footer {
+    padding: 12px;
+  }
+}
+
+/* Touch device specific styles */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove all hover effects on touch devices */
+  .project-card:hover,
+  .about-grid:hover,
+  .button:hover,
+  .cta:hover,
+  .icon:hover,
+  .icon-footer:hover {
+    transform: none;
+    box-shadow: inherit;
+    background: inherit;
+    border-color: inherit;
+  }
+  
+  /* Add touch feedback instead */
+  .project-card:active,
+  .about-grid:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  .button:active,
+  .cta:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
   }
 }
 
