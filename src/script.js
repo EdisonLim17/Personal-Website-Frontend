@@ -383,13 +383,50 @@ function initAboutScrollAnimation() {
   observer.observe(aboutGrid);
 }
 
-// Initialize both scroll animations when DOM is loaded
+// ===== Scroll Animation for Resume Section =====
+function initResumeScrollAnimation() {
+  const resumeFigure = document.querySelector('.resume-figure');
+  const resumeImage = document.querySelector('.resume-image');
+  const resumeButton = document.querySelector('.button');
+  
+  if (!resumeFigure) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate resume container first
+        entry.target.classList.add('animate-in');
+        
+        // Then animate image with 3D effect
+        setTimeout(() => {
+          if (resumeImage) resumeImage.classList.add('animate-in');
+        }, 300);
+        
+        // Finally animate button
+        setTimeout(() => {
+          if (resumeButton) resumeButton.classList.add('animate-in');
+        }, 600);
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2, // Trigger when 20% of the resume section is visible
+    rootMargin: '0px 0px 100px 0px'
+  });
+  
+  observer.observe(resumeFigure);
+}
+
+// Initialize all scroll animations when DOM is loaded
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initAboutScrollAnimation();
+    initResumeScrollAnimation();
   });
 } else {
   initScrollAnimations();
   initAboutScrollAnimation();
+  initResumeScrollAnimation();
 }
