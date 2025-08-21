@@ -388,8 +388,8 @@ img {
   width: 400px;
   height: 400px;
   background: radial-gradient(circle, 
-    rgba(96, 165, 250, 0.08) 0%,
-    rgba(236, 72, 153, 0.06) 40%,
+    rgba(96, 165, 250, 0.16) 0%,
+    rgba(236, 72, 153, 0.12) 40%,
     transparent 70%
   );
   border-radius: 50%;
@@ -409,7 +409,7 @@ img {
   position: absolute;
   inset: 0;
   padding: 2px;
-  background: radial-gradient(250px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+  background: radial-gradient(300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
     rgba(255, 255, 255, 0.8) 0%,
     rgba(255, 255, 255, 0.4) 40%,
     rgba(255, 255, 255, 0.2) 70%,
@@ -659,7 +659,7 @@ img {
   position: absolute;
   inset: 0;
   padding: 2px;
-  background: radial-gradient(250px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+  background: radial-gradient(300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
     rgba(255, 255, 255, 0.8) 0%,
     rgba(255, 255, 255, 0.4) 40%,
     rgba(255, 255, 255, 0.2) 70%,
@@ -684,8 +684,8 @@ img {
   width: 350px;
   height: 350px;
   background: radial-gradient(circle, 
-    rgba(96, 165, 250, 0.08) 0%,
-    rgba(236, 72, 153, 0.06) 40%,
+    rgba(96, 165, 250, 0.16) 0%,
+    rgba(236, 72, 153, 0.12) 40%,
     transparent 70%
   );
   border-radius: 50%;
