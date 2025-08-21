@@ -22,8 +22,6 @@ html {
   scroll-behavior: smooth;
   /* Improve touch scrolling on iOS */
   -webkit-overflow-scrolling: touch;
-  /* Ensure iOS Safari overscroll areas are black */
-  background-color: #000000;
 }
 
 body {
@@ -39,8 +37,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* Improve touch interactions */
   touch-action: manipulation;
-  /* Fix iOS Safari overscroll background */
-  background-color: #000000;
 }
 
 img {
